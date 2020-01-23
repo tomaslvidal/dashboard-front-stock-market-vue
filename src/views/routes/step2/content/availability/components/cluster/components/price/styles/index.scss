@@ -1,0 +1,66 @@
+.precio_total{
+    color: #4c4a4a;
+    border-top: 1px solid #f1f1f1;
+    margin-top: 10px;
+}
+
+.precio_total small{
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.precio_total span{
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.precio_container{
+    padding: 12px;
+    position: sticky;
+    top: 0;
+}
+
+div.precio_container > div.col-12:not(.precio_total) > div.row > div:not(:first-child){
+    color: gray;
+}
+
+.precio_adulto{
+    font-size: 1.8em;
+    color: #007bff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.destacado .costo_container .precio_adulto{
+	color: #05c97b;
+} 
+
+.costo_container{
+    position: relative;
+    border-left: 3px solid #f1f1f1;
+}
+
+.detalles_precio_mobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.9em;
+    color:  #4c4a4a;
+}
+@media (max-width: 991px){
+    .precio_adulto{
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px){
+    .costo_container{
+        border: none;
+    }
+    
+    .detalles_precio_mobile, .detalles_precio_mobile small{
+        font-size: 0.8em;
+    }
+
+}

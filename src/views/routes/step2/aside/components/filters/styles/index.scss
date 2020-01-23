@@ -1,0 +1,50 @@
+ @import './checker-h4.scss';
+
+.checker div:not(.n-checker){
+    margin: 12px 0;
+}
+
+.checker span, .checker label{
+    padding: 0 5px;
+    font-size: 12.96px;
+    color: #808080;
+}
+.back_button{
+    background: transparent;
+    border: none;
+    color: gray;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+@media (max-width: 991px)
+{
+        
+	.filtros_container
+	{
+        display: none;
+		margin: 0;
+	    position: fixed;
+		background: #fff;
+		left: -2000px;
+	    z-index: 11;
+	    top: 0;
+
+    } 
+    .filtrar
+	{
+		display: flex;
+		font-size: 1.2em;
+    	font-weight: 600;
+    	padding: 10px 0;
+    	border-bottom: 1px solid #f1f1f1;
+		color: gray;
+   	 	margin-bottom: 10px;
+	}
+    .modal_container
+	{
+		overflow-y: scroll;
+        height: 100vh;
+        padding-bottom: 55px;
+	}
+}

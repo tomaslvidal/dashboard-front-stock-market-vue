@@ -1,0 +1,190 @@
+.fade-enter-active, .fade-leave-active { transition: opacity .5s } .fade-enter, .fade-leave-to { opacity: 0 }
+
+
+.duracion_total_mobile{
+    display: none;
+}
+
+.content_idayvuelta{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom:1px solid #f1f1f1;
+    transition: all 600ms ease-in-out;
+}
+
+.content_idayvuelta:hover{
+    transition: all 600ms ease-in-out;
+    background: aliceblue;
+}
+
+.content_idayvuelta .aero_label{
+    font-size: 0.9em;
+    padding: 0 5px;
+    color: #4c4a4a;
+}
+
+.aero_horario{
+    display: flex;
+}
+
+.aero_list{
+    padding: 0px 10px;
+}
+
+.aero_list li{
+    transform: translate(0px, 12px);
+    transition: all 600ms ease-in-out;
+}
+
+.aero_list span{
+    font-size: 0.8em;
+    opacity: 0;
+    transition: all 600ms ease-in-out;
+    
+}
+
+.aero_escalas{
+    font-size: 0.8em;
+    position: relative;
+    width: 100px;
+    text-align: center;
+
+}
+
+.circle{
+    border: 1px solid #5d5b5b;
+    top: 41%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.dos_escalas .circle{
+    left: 30px;
+}
+.circle_two{
+    border: 1px solid #5d5b5b;
+    top: 42%;
+    position: absolute;
+    right: 30px;
+    left: 0;
+    margin: auto;
+    height: 10px;
+    width: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.directo{
+    color: #00b907;
+}
+
+.directo span, .una_escala span{
+    background: #00b907;
+    top: 50%;
+    height: 1px;
+    left: 0;
+    border-radius: 8px;
+    width: 100%;
+    position: absolute;
+}
+
+.una_escala span{
+    background: gray;
+}
+
+.duracion_total{
+    font-size: 0.9em;
+}
+.extra_day{
+    color: red;
+    position: absolute;
+}
+.info_btn{
+    font-size: 0.9em;
+    color: #007bff;
+}
+
+.equipaje_mouseover:hover{
+    cursor: pointer;
+}
+
+ul{
+    margin: 0;
+    list-style: none;
+}
+
+.detalles_link{
+    font-size: 1.3em;
+    padding:0 5px;
+    cursor: pointer;
+}
+.destacado .content_idayvuelta .btn-filter svg{
+	color: #05c97b;
+}
+
+
+// Hover Animations
+    .airline_name, .airline_blur {
+        position: relative;
+        white-space: nowrap;
+        width: 115px;
+     
+    }
+    .airline_blur{
+        overflow: hidden;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 99;
+          width: 30%;
+          height: 100%;
+          background:linear-gradient(to right, rgba(255,255,255,0) 0%, white 80%, white 100%);
+          pointer-events: none;
+        }
+    }
+
+.airline_name, .escala_text{
+    font-size: 0.9em;
+    padding-left: 5px;
+    transition: all 600ms ease-in-out;
+}
+
+.escala_text{
+    transform: translate(0px, 15px);
+    padding: 0;
+    opacity: 0;
+}
+
+.content_idayvuelta:hover{
+    .aero_list span, .aero_list li, .escala_text{
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+    .airline_blur{
+        transition: all 600ms ease-in-out;
+        &:after{
+            background:linear-gradient(to right, rgba(255,255,255,0) 0%, aliceblue 80%, aliceblue 100%);
+            transition: all 600ms ease-in-out;
+        }
+    }
+}
+
+.collapse_hover  li, .collapse_hover span, .collapse_hover{
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+.collapse_back_hover{
+    background: aliceblue;
+}

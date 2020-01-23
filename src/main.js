@@ -1,23 +1,41 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
 import { BootstrapVue } from 'bootstrap-vue'
 
-import App from './App.vue'
-
 import './registerServiceWorker'
-
-import router from './router'
-
-import store from './store'
 
 import '@/scss/custom.scss'
 
+import Routes from '@/views/routes';
+
+import router from '@/router';
+
+import store from '@/store';
+
+import { sync } from 'vuex-router-sync';
+
+import '@/config';
+
+import '@/prototypes';
+
+import '@/components/registration';
+
+// import '@/plugins';
+
+import { global_mixin } from '@/mixins';
+
+// Vue.config.productionTip = false;
+
+// Vue.config.devtools = false;
+
+sync(store, router, { moduleName: 'Router' });
+
 Vue.use(BootstrapVue);
 
-Vue.config.productionTip = false
+Vue.mixin(global_mixin); 
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+    router,
+    store,
+    render: h => h(Routes),
+}).$mount('#app');

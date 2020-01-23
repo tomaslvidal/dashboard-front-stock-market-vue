@@ -1,15 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
 
-Vue.use(Vuex)
+import Vuex from 'vuex';
+
+import { Step2, Step3, Step5 } from './modules';
+
+import { VuexPersistedstate } from './plugins';
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+    modules: {
+        Step2,
+        Step3,
+        Step5
+    },
+    plugins: [VuexPersistedstate]
+});
