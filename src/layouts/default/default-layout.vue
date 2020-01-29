@@ -11,30 +11,13 @@
         </template>
 
         <template v-else>
-            <aside 
-                :class="{
-                    'col-xl-3': $store.state.Step2.request_made.availability,
-                    'col-12': true,
-                    'p-xl-0': true,
-                    'filtros_container': true
-                }"
-            >
+            <aside>
                 <router-view name="aside" />
             </aside>
 
-            <main
-                :class="{
-                    'col-xl-9': $store.state.Step2.request_made.availability,
-                    'col-12': true,
-                    'pr-lg-0': $store.state.Step2.request_made.availability,
-                    'p-0': !$store.state.Step2.request_made.availability && !mobile_size,
-                    'px-3': !$store.state.Step2.request_made.availability && mobile_size
-                }"
-            >
+            <main>
                 <router-view name="content" />
             </main>
-
-            <router-view name="mobile" />
         </template>
     </skeleton>
 </template>
@@ -66,16 +49,4 @@
 </script>
 
 <style scoped>
-     @media (max-width: 991px){
-       .filtros_container
-        {
-            margin: 0;
-            position: fixed;
-            background: #fff;
-            left: -2000px;
-            z-index: 11;
-            top: 0;
-
-        }	
-    }
 </style>
