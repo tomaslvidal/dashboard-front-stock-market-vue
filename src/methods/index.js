@@ -24,8 +24,6 @@ import getMinutes from './getMinutes';
 
 import totalDuration from './totalDuration';
 
-import toFormatArrivalDeparture from './toFormatArrivalDeparture';
-
 import getFormatJsonSell from './getFormatJsonSell';
 
 import getTypeSchedule from './getTypeSchedule';
@@ -42,4 +40,4 @@ import onlyOneItem from './onlyOneItem';
 
 import booleanToString from './booleanToString';
 
-export { totalDuration, forQueryString, parseURL, getHour, getMinutes, parseSearch, jsonValidStructure, jsonParseAll, jsonPaths, deleteJsonPath, calculateAge, mergeBIntoA, booleanToNumber, toFormatArrivalDeparture, getFormatJsonSell, getTypeSchedule, clearFilters, toFormatStringDate, httpQueryToJson, adaptGet, onlyOneItem, booleanToString };
+export { totalDuration, forQueryString, parseURL, getHour, getMinutes, parseSearch, jsonValidStructure, jsonParseAll, jsonPaths, deleteJsonPath, calculateAge, mergeBIntoA, booleanToNumber, getFormatJsonSell, getTypeSchedule, clearFilters, toFormatStringDate, httpQueryToJson, adaptGet, onlyOneItem, booleanToString };

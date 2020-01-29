@@ -9,6 +9,8 @@ export default {
     },
     created(){
         this.current_width = window.innerWidth;
+
+        this.current_scroll = window.scrollY;
         
         window.addEventListener('resize', val => {
            this.current_width = window.innerWidth;
@@ -26,28 +28,23 @@ export default {
         mobile_size(){
             if(this.current_width < 576){
                 return true;
-            }else{
-                return false;
             }
+
+            return false;
         },
         tablet_size(){
             if(this.current_width < 770){
                 return true;
-            }else{
-                return false;
             }
-        },
-        collapse_filters(){
-            if(this.current_width > 1200){
-                return true;
-            }else{
-                return false;
-            }
+
+            return false;
         },
         scroll_arrow(){
             if(this.current_scroll > 300){
                 return true;
             }
+
+            return false;
         }
     }
 };
