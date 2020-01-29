@@ -12,11 +12,11 @@ const router = new Router({
     routes: [
         {
             path: "/",
-            name: "index",
+            name: "root",
             components: {
-                header: require('@/views/routes/index').Header,
-                content: require('@/views/routes/index').Content,
-                aside: require('@/views/routes/index').Aside,
+                header: require('@/views/routes/root').Header,
+                content: require('@/views/routes/root').Content,
+                aside: require('@/views/routes/root').Aside,
             }
         },
         {
