@@ -7,14 +7,15 @@
             <b-tab
                 title-item-class="w-50 text-center"
                 title="Precio por aerolineas"
-                active
             >
                 <by-airline />
             </b-tab>
             
             <b-tab
+                v-if="router.type_search !== 3"
                 title-item-class="w-50 text-center"
                 title="Precios +/- 3 días"
+                :active="flex"
             >
                 <price-more-less-three-days />
             </b-tab>
@@ -39,6 +40,17 @@
             BTab,
             ByAirline,
             PriceMoreLessThreeDays
+        },
+        computed:{
+            flex(){
+                let active_status = 'active';
+
+                if(this.$store.state.Step2.search.flex === true){
+                    return true;
+                }
+
+                return false;
+            }
         }
     }
 </script>
@@ -60,4 +72,6 @@
     nav.a-g *:focus{
         outline: none!important
     }
+
+    
 </style>

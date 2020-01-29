@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import '@/styles/global';
+
     const default_layout = "default";
 
     export default {
@@ -15,3 +17,9 @@
         }
     };
 </script>
+
+<style>
+    *{
+        outline: 0!important;
+    }
+</style>

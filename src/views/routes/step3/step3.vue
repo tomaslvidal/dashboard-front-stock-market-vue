@@ -16,7 +16,7 @@
                 </button>
             </div>
 
-            <div class="col-12 col-lg-8 ">
+            <div class="col-12 col-lg-8 forms_step3">
                 <ValidationObserver 
                     v-slot="{ invalid }"
                     ref="validacion"
@@ -64,12 +64,10 @@
                                     <p>Para poder hacer este viaje, los pasajeros argentinos necesitarán contar con cierta documentación: Estados Unidos (conexión en DFW)</p>
                                 </div>
                             </b-collapse>   
-                        </div>
-
-                        <payment 
+                        </div><!--   <payment 
                             :form="form.payment"
                             @open_modal="()=>{ abrir_modal(3) }"
-                        />
+                        /> -->
 
                         <div
                             class="main datos_container"
@@ -134,6 +132,7 @@
                                 type="submit"
                                 :class="{
                                     'btn': true,
+                                    'w-100' : true,
                                     'btn-outline-primary': state.loading_select === 0,
                                     'btn-outline-info': state.loading_select === 1,
                                     'btn-outline-danger': state.loading_select === 2,
@@ -305,7 +304,7 @@
 
     import Contact from './contact';
 
-    import Payment from './payment';
+    //import Payment from './payment';
 
     import Modal from '@/views/routes/modal';
 
@@ -326,7 +325,7 @@
             Privacidad,
             BCollapse,
             Tarjeta,
-            Payment,
+            //Payment,
             BSpinner
         },
         created(){
@@ -451,5 +450,14 @@
 
 <style lang="scss" scoped>
     @import './styles';
+
+    @media (max-width: 995px){
+        .sticky_container{
+            order: 1;
+        }
+        .forms_step3{
+            order: 2;
+        }
+    }
   
 </style>

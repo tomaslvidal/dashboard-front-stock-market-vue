@@ -10,7 +10,7 @@
                 aria-label="Basic example"
             >
                 <button 
-                    @click="showModal(1)"
+                    @click="showModal(1,1)"
                     type="button"
                     class="btn btn_mobile"
                 >
@@ -54,7 +54,7 @@
         >
             <div>
                 <div class="modal_container">
-                    <div class="col-12 filtrar d-block d-lg-none">
+                    <div class="col-12 filtrar d-flex d-lg-none modal_header">
                         <button 
                             type="button"
                             class="back_button"
@@ -63,9 +63,10 @@
                             <font-awesome-icon
                                 class="pr-2"
                                 fixed-width
-                                :icon="['fas' , 'chevron-circle-left']"
-                            />{{ filter_name }}
+                                :icon="['fas' , 'arrow-left']"
+                            />
                         </button>
+                        <h3>{{ filter_name }}</h3>  
                     </div>
                     <keep-alive>
                         <Filters
@@ -94,7 +95,7 @@
 
     import $ from 'jquery';
 
-    import { faFilter, faSortAmountUp, faPlaneDeparture, faChevronCircleLeft } from '@fortawesome/free-solid-svg-icons';
+    import { faFilter, faSortAmountUp, faPlaneDeparture, faChevronCircleLeft, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
     import { Header } from '@/views/routes/step2';
 
@@ -102,7 +103,7 @@
     
     import { between_mobile_header } from '@/views/routes/step2/mixins';
 
-    library.add( faFilter, faPlaneDeparture, faSortAmountUp, faChevronCircleLeft ); 
+    library.add( faFilter, faPlaneDeparture, faSortAmountUp, faChevronCircleLeft, faArrowLeft ); 
 
     export default {
         mixins: [ between_mobile_header ],
@@ -156,7 +157,7 @@
         right: 0;
         margin: auto;
         text-align: center;
-        background: rgba(72, 72, 72, 0.8);
+        background: #363636e6;
         -webkit-box-shadow: -1px 5px 5px -5px rgba(0,0,0,0.75);
         -moz-box-shadow: -1px 5px 9px -5px rgba(0,0,0,0.75);
         box-shadow: -1px 5px 5px -5px rgba(0,0,0,0.75);
@@ -175,9 +176,11 @@
     .back_button{
         background: transparent;
         border: none;
-        color: gray;
         font-weight: 600;
-        font-size: 1.1em;
+        font-size: 1.4em;
+        position: absolute;
+        left: 0px;
+        padding: 0;
     }
     .filtros_container_mobile
 	{
@@ -189,11 +192,24 @@
         top: 0;
 
     }
+    .modal_header{
+        color:#484848;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:0px;
+        margin: 10px 0;
+            
+    }
+    .modal_header h3{
+        margin: 0;
+    }
     .filtrar{
         position: sticky;
         top: 0;
         background: white;
-        z-index: 99;
+        padding: 10px 0;
+        z-index: 19;
     }
     .filtrar h3{
         font-size: 1.50rem;

@@ -12,7 +12,7 @@
 
                         <span>
                             {{
-                                `${toLocaleString(item.flight[type].fecha, {weekday: 'long', first_capital_letter: true})} ${toLocaleString(item.flight[type].fecha, {day: 'numeric', first_capital_letter: true})} de ${toLocaleString(item.flight[type].fecha, {month: 'long', first_capital_letter: true})}`
+                                `${toLocaleString(item.flight.arrival.fecha, {weekday: 'long', first_capital_letter: true})} ${toLocaleString(item.flight.arrival.fecha, {day: 'numeric', first_capital_letter: true})} de ${toLocaleString(item.flight.arrival.fecha, {month: 'long', first_capital_letter: true})}`
                             }}
                         </span>
                     </div>

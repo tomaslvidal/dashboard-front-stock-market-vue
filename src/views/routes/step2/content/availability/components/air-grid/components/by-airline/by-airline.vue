@@ -10,7 +10,7 @@
                     width="100%"
                 >
                     <tr>
-                        <td style="height: 49px" />
+                        <td style="height: 44px" />
                     </tr>
 
                     <tr
@@ -60,7 +60,7 @@
                         >
                             <img
                                 class="w-auto"
-                                style="height: 35px"
+                                style="height: 30px"
                                 :src="`//aereos.eviajes.online/img/airlines/${item_airline.codigo}.png`"
                                 alt=""
                             >
@@ -77,7 +77,7 @@
                             @click="getItemGo(item_airline_grid, item_stopover)"
                             class="precio_aero"
                         >
-                            {{ `$${gridGetPrice(item_airline_grid.codigo, item_stopover.value)}` }}
+                            {{ `${gridGetPrice(item_airline_grid.codigo, item_stopover.value)}` }}
                         </td>
                     </tr>
                 </table>
@@ -111,12 +111,12 @@
             items(){
                 return this.$store.state.Step2.filter.airline.items.map(item => {
                     let rates = this.$store.state.Step2.data.rates.filter(item2 => {
-                        let segments = item2.segmentos.filter(item3 => item3.tipo === 'ida').map(item3 => item3.tramos[0]).filter(item3 => item3.aerolineaOperadora.codigo === item.codigo);
+                        let segments = item2.segmentos.filter(item3 => item3.tipo === 'ida' || item3.tipo === 'tramo').map(item3 => item3.tramos[0]).filter(item3 => item3.aerolineaOperadora.codigo === item.codigo);
 
                         return segments.length;
                     });
 
-                    let segments = rates.map(item2 => item2.segmentos.map((item3, index3) => ({...item3, precio: item2.data.precio, id_segment: index3, id_rate: item2.numero})).filter(item3 => item3.tipo === 'ida')).flat(Infinity);
+                    let segments = rates.map(item2 => item2.segmentos.map((item3, index3) => ({...item3, precio: item2.data.precio, id_segment: index3, id_rate: item2.numero})).filter(item3 => item3.tipo === 'ida' || item3.tipo === 'tramo')).flat(Infinity);
 
                     return {
                         ...item,
@@ -164,10 +164,10 @@
                 try {
                     let price = this.gridGetRate(...params).rate.precio.total.valor;
                     
-                    return new Intl.NumberFormat('es-AR').format(price);
+                    return new Intl.NumberFormat('es-AR', {style: "currency", currency: "ARS"}).format(price);
                 }
                 catch(e){
-                    return ' - ';
+                    return ' ';
                 }
             },
             getItemGo(item_airline_grid, item_stopover){
@@ -236,7 +236,7 @@
 
     .tabla_absolute td{
         width: 175px;
-        height: 50px;
+        height: 45px;
         text-align: center;
         border-right: 1px solid #efefef;
         border-bottom: 1px solid #efefef;
@@ -250,6 +250,7 @@
         text-align: center;
         color: #2196F3;
         transition: all 600ms ease-in-out;
+        font-size: 0.9em;
     }
 
     .table_escala tr{
@@ -258,13 +259,13 @@
 
     .table_escala td{
         background: #fff;
-        height: 50px;
+        height: 45px;
         padding: 10px;
         color: gray;
         border-bottom: 1px solid #efefef; 
         font-size: 0.9em;
     }
-
+    
     .table_left, .table_right{
         z-index: 3;
         position: absolute;
@@ -293,4 +294,6 @@
     .table_right{
         right: 0;
     }
+
+
 </style>

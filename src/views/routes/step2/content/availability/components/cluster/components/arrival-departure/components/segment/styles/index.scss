@@ -156,7 +156,7 @@ ul{
     }
 
 .airline_name, .escala_text{
-    font-size: 0.9em;
+    font-size: 0.8em;
     padding-left: 5px;
     transition: all 600ms ease-in-out;
 }
@@ -165,6 +165,7 @@ ul{
     transform: translate(0px, 15px);
     padding: 0;
     opacity: 0;
+    font-size: 0.9em;
 }
 
 .content_idayvuelta:hover{

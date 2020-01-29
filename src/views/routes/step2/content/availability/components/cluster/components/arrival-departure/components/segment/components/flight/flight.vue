@@ -244,6 +244,7 @@
         justify-content: space-between;
         border-bottom: 1px solid #f1f1f1;
         padding: 10px;
+        background: aliceblue;
     }
 
     .header_detalles span{

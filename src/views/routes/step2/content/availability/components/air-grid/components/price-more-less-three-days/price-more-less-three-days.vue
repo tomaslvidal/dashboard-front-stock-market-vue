@@ -34,6 +34,16 @@
                     }"
                 />
             </tr>
+            <tr class="leyenda_colores">
+                <td class="leyenda_td">
+                    <span class="cuadrado green">&nbsp;</span>
+                    Más Barato
+                </td>
+                <td class="leyenda_td">
+                    <span class="cuadrado blue">&nbsp;</span>
+                    Ida Y Vuelta
+                </td>
+            </tr>
         </tbody>
     </table>
 </template>
@@ -61,7 +71,7 @@
                     const addDates = (arrival_or_departure) => {
                         data[arrival_or_departure === 'salida' ? 'arrival' : 'departure'].push((item3 => {
                             return toFormatStringDate(item3);
-                        })(item2.tramos[arrival_or_departure === 'salida' ? 0 : item2.tramos.length - 1][arrival_or_departure].fecha));
+                        })(item2.tramos[0]['salida'].fecha));
                     }
 
                     if(this.$store.state.Step2.config.type === 'arrival_departure'){
@@ -78,6 +88,8 @@
 
                 Object.keys(data).forEach(key => {
                     data[key] = data[key].filter((item, index, array) => array.findIndex(item2 => item2 === item) === index).sort((a, b) => {
+                        a = new Date(a), b = new Date(b);
+
                         if(a < b){
                             return -1;
                         }
@@ -108,4 +120,26 @@
         color: #4c4a4a;
         background: #f1f1f1;
     }
+    .leyenda_colores{
+        background:#fff;
+        color: gray;
+        font-size: 0.8em;
+    }
+    .cuadrado{
+        width: 15px; 
+        content:'';
+        display: inline-block;
+        height: 15px;
+        border: 0.5px solid #efefef;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+    .blue{ background: #00BCD4;}
+    .green{ background: greenyellow; }
+
+    .leyenda_td{
+        padding: 10px;
+        border: none;
+    }
+
 </style>

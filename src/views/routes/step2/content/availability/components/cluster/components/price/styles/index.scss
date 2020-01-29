@@ -25,7 +25,7 @@ div.precio_container > div.col-12:not(.precio_total) > div.row > div:not(:first-
 }
 
 .precio_adulto{
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: #007bff;
     font-weight: 700;
     display: flex;
@@ -45,8 +45,11 @@ div.precio_container > div.col-12:not(.precio_total) > div.row > div:not(:first-
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color:  #4c4a4a;
+}
+.passenger_name{
+    font-weight: 600;
 }
 @media (max-width: 991px){
     .precio_adulto{

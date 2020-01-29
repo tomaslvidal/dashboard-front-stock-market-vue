@@ -5,7 +5,7 @@ export default {
         return Promise.all([
             context.dispatch('SET_FILTER', {
                 filter: 'airline',
-                payload: context.state.data.rates.map(item => item.segmentos.filter(item => item.tipo === 'ida')).flat().map(item => (item => ({codigo: item.codigo, nombre: item.nombre}))(item.tramos[0].aerolineaOperadora)).filter((item, index, array) => array.findIndex(item2 => item2.codigo === item.codigo) === index)
+                payload: context.state.data.rates.map(item => item.segmentos.filter(item => item.tipo === 'ida' || item.tipo === 'tramo')).flat().map(item => (item => ({codigo: item.codigo, nombre: item.nombre}))(item.tramos[0].aerolineaOperadora)).filter((item, index, array) => array.findIndex(item2 => item2.codigo === item.codigo) === index)
             }),
             context.dispatch('SET_FILTER', {
                 filter: 'airport',
@@ -23,13 +23,13 @@ export default {
 
                     rates.map(item => toFormatArrivalDeparture(item.segmentos)).forEach(item => Object.keys(item).forEach(key => {
                         item[key].forEach(item2 => {
-                            let arrival_or_departure = item2.tipo === 'ida' ? 'arrival' : 'departure';
+                            let arrival_or_departure = item2.tipo === 'ida' || item2.tipo === 'tramo' ? 'arrival' : 'departure';
 
-                            [0, item2.tramos.length - 1].forEach(position => {
-                                items[arrival_or_departure][position === 0 ? 'egress' : 'finish'].push((item_destination => ({
+                            [0, item2.tramos.length - 1].forEach((position, index) => {
+                                items[arrival_or_departure][index === 0 ? 'egress' : 'finish'].push((item_destination => ({
                                     value: item_destination.destino,
                                     name: item_destination.destino_completo
-                                }))(item2.tramos[position][position === 0 ? 'salida' : 'llegada']));
+                                }))(item2.tramos[position][index === 0 ? 'salida' : 'llegada']));
                             });
                         });
                     }));
@@ -55,10 +55,10 @@ export default {
 
                     rates.map(item => toFormatArrivalDeparture(item.segmentos)).forEach(item => Object.keys(item).forEach(key => {
                         item[key].forEach(item2 => {
-                            let arrival_or_departure = item2.tipo === 'ida' ? 'arrival' : 'departure';
+                            let arrival_or_departure = item2.tipo === 'ida' || item2.tipo === 'tramo' ? 'arrival' : 'departure';
 
-                            [0, item2.tramos.length - 1].forEach(position => {
-                                items[arrival_or_departure][position === 0 ? 'egress' : 'finish'].push((item_destination => getTypeSchedule(item_destination.fecha))(item2.tramos[position][position === 0 ? 'salida' : 'llegada']));
+                            [0, item2.tramos.length - 1].forEach((position, index) => {
+                                items[arrival_or_departure][index === 0 ? 'egress' : 'finish'].push((item_destination => getTypeSchedule(item_destination.fecha))(item2.tramos[position][index === 0 ? 'salida' : 'llegada']));
                             });
                         });
                     }));
@@ -78,7 +78,7 @@ export default {
 
                     rates.map(item => toFormatArrivalDeparture(item.segmentos)).forEach(item => Object.keys(item).forEach(key => {
                         item[key].forEach(item2 => {
-                            let arrival_or_departure = item2.tipo === 'ida' ? 'arrival' : 'departure';
+                            let arrival_or_departure = item2.tipo === 'ida' || item2.tipo === 'tramo' ? 'arrival' : 'departure';
 
                             let qty_stopovers = item2.tramos.length-1;
 

@@ -1,24 +1,28 @@
 <template>
     <div>
-        <font-awesome-icon
+        <div 
             :class="{
-                'sticky_scrollable_arrow': true,
+                'sticky_scrollable_arrow' : true,
                 'show_arrow' : scroll_arrow,
                 'hide_arrow' : !scroll_arrow
             }"
-            :icon="['fas' ,'chevron-circle-up']"
-            @click="scrollToTop()"
-            fixed-width
-        />
+        >
+            <font-awesome-icon
+                class="arrow_icon"
+                :icon="['fas' ,'arrow-up']"
+                @click="scrollToTop()"
+                fixed-width
+            />
+        </div>
     </div>
 </template>
 
 <script>
     import { library } from '@fortawesome/fontawesome-svg-core';
 
-    import {  faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
+    import {  faChevronCircleUp, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
-    library.add( faChevronCircleUp );
+    library.add( faChevronCircleUp, faArrowUp );
 
     import $ from 'jquery';
 
@@ -55,18 +59,26 @@
     }
     .sticky_scrollable_arrow{
         font-size: 2.5em;
-        color: #007bff;
+        background: black;
         cursor: pointer;
         position: fixed;
-        bottom: 20px;
+        display: flex;
+        bottom: 80px;
         right: 20px;
+        justify-content: center;
+        align-items: center;
         z-index: 98;
         transition: all 600ms ease-in-out;
-        background: transparent;
-        width: 40px;
-        box-shadow: 0px 2px 6px -2px rgba(0,0,0,0.75);
+        width: 50px;
+        height: 50px;
+        box-shadow:0px 3px 15px -1px rgba(0, 0, 0, 0.75);
         border-radius: 30px;
         
+    }
+    .arrow_icon{
+        color: #efefef;
+        display: block;
+        font-size: 0.5em;
     }
     .sticky_scrollable_arrow:hover{
         color: gray;
@@ -77,15 +89,15 @@
     }
     .show_arrow{
         animation: show_arrow 1s ease-in-out;
-        display: block;
+        display: flex;
        
     }
 
 
-    @media (max-width: 800px){
+    @media (max-width: 576px){
         .sticky_scrollable_arrow{
-            top:10px;
-            bottom: 0;
+            display: none;
         }
+
     }
 </style>

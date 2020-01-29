@@ -224,7 +224,7 @@ const Step3 = {
                         return res.data;
                     })
                     .then(res => {
-                        if(!res.length){
+                        if(res === ''){
                             resolve(true);
                         }
                         else{

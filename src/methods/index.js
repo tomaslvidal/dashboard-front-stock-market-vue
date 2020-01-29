@@ -40,4 +40,6 @@ import adaptGet from './adaptGet';
 
 import onlyOneItem from './onlyOneItem';
 
-export { totalDuration, forQueryString, parseURL, getHour, getMinutes, parseSearch, jsonValidStructure, jsonParseAll, jsonPaths, deleteJsonPath, calculateAge, mergeBIntoA, booleanToNumber, toFormatArrivalDeparture, getFormatJsonSell, getTypeSchedule, clearFilters, toFormatStringDate, httpQueryToJson, adaptGet, onlyOneItem };
+import booleanToString from './booleanToString';
+
+export { totalDuration, forQueryString, parseURL, getHour, getMinutes, parseSearch, jsonValidStructure, jsonParseAll, jsonPaths, deleteJsonPath, calculateAge, mergeBIntoA, booleanToNumber, toFormatArrivalDeparture, getFormatJsonSell, getTypeSchedule, clearFilters, toFormatStringDate, httpQueryToJson, adaptGet, onlyOneItem, booleanToString };

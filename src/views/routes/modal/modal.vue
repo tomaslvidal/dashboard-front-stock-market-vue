@@ -14,7 +14,7 @@
 
                     <font-awesome-icon
                         class="back_button"
-                        :icon="['fas' ,'times-circle']"
+                        :icon="['fas' ,'times']"
                         @click="()=>{ $emit('trigger_modal')}"
                         fixed-width
                     />
@@ -28,11 +28,9 @@
 <script>
     import { library } from '@fortawesome/fontawesome-svg-core';
 
-    import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+    import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-    library.add( faTimesCircle );
-
-    import $ from 'jquery';
+    library.add( faTimes );
 
     export default {
         
@@ -90,14 +88,14 @@
         font-weight: 600;
         padding: 10px 0;
         border-bottom: 1px solid #f1f1f1;
-        color: gray;
+        color: #363636;
         margin-bottom: 10px;
     }
     .cerrar_modal
 	{
 		display: flex; 
 		justify-content: space-between;
-		align-items: baseline;
+		align-items: center;
 	}
 	.back_button{
         font-size: 1.2em;
@@ -105,7 +103,7 @@
     }
 @media (max-width: 900px){
     .modal_step3 h1{
-        font-size: 1em;
+        font-size: 1.1em;
     }
     .modal_step3
     {

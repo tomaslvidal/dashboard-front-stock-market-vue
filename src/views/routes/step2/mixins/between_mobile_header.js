@@ -1,13 +1,26 @@
 import $ from 'jquery';
 
 export default{ 
+    data(){
+            return{
+                click : 0
+            }
+    },
     methods:{
-            showModal(value, state = true){
+            showModal(value, state = true ){
+                
+                this.click++;
+                   
                 $('.filtros_container_mobile').animate({
-                left: 0
+                            left: 0
                 }, 500);
+
                 $('body').css('overflow', 'hidden');
-               if(state == true){
+              /*   if(this.click!= 1){
+                    this.hideModal();
+                    this.click = 0;
+                } */
+                if(state == true){
                 this.state.component = value;
                 if(value == 1){
                     this.filter_name = 'Filtrar';

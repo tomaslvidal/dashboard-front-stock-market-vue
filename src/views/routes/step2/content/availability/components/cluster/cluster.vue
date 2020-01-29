@@ -16,7 +16,8 @@
         <div 
             :class="{
                 'row' : true,
-                'border_destacado' : destacado
+                'border_destacado' : destacado,
+                'opacity_error' : state.loading_select == 2
             }"
         >
             <div 
@@ -179,18 +180,14 @@
                         this.$router.push({name: 'step3'});
                     })
                     .catch(e => {
-                        this.$store.dispatch('Step3/SELECT_OPTION', {
-                            id: this.item.numero,
-                            page: this.page
-                        });
-
-                        this.$router.push({name: 'step3'});
-                        /* if(e.message === '003xS6'){
+                        if(e.message === '003xS6'){
                             this.state.loading_select = 0;
                         }
                         else{
                             this.state.loading_select = 2;
-                        } */
+                        }
+
+                        throw e;
                     });
                 }
                 else{
@@ -212,8 +209,12 @@
         left: 0;
         top: 0;
         z-index: 100000;
+    }
+    .opacity_error{
         opacity: 0.4;
         transition: all 1s ease-in;
+
+
     }
     .selec_button{
         font-size: 1.1em;

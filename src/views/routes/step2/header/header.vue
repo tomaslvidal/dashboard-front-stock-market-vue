@@ -1,58 +1,84 @@
 <template>
-    <header class="container-fluid mb-4 mt-2">
-        <!-- HEADER MOBILE -->
+    <header class="container-fluid mb-4 mt-2 px-lg-0 sticky_header">
+        <!-- HEADER FIXED --------------------------------------->
         <div
             v-if="router.type_search !== 3"
             :class="{
                 'col-12':true,
                 'd-flex' : !disable_mobile,
-                'd-lg-none' : true,
                 'd-none' : disable_mobile,
+                'disappear' : !display_header,
                 'mobile_menu_buscador': true
             }"
         >
-            <div class="col-12">
-                <div class="mobile_fecha_container">
-                    <div class="mobile_fecha">
-                        <div class="recorrido_mobile">
-                            {{ originDestination }}
+            <div class="col-12 px-0 px-md-2">
+                <!-- DESKTOP -->
+                <div
+                    class="header_fixed_desktop"
+                    v-if="!tablet_size"
+                >
+                    <p>
+                        Buscando vuelos desde
+                        <span v-html="origin_destination">&nbsp;</span>
+                        <span v-html="date_idayvuelta">&nbsp;</span>
+                    </p>
+                    <button 
+                        class="btn btn-sm btn-primary modificar_button"
+                        @click="() => { changeHeader() }"
+                        type="button"
+                    >
+                        <font-awesome-icon
+                            class="pr-2"
+                            :icon="['fas' ,'search']"
+                            fixed-width
+                        />Modificar Búsqueda
+                    </button>   
+                </div>
+
+                <!-- TABLET -->
+                <div v-if="tablet_size">
+                    <div class="mobile_fecha_container">
+                        <div class="mobile_fecha col-8">
+                            <div class="recorrido_mobile">
+                                {{ origin_destination_mobile }}
+                            </div>
+                            <div class="checkin_mobile">
+                                <font-awesome-icon
+                                    class="pr-2"
+                                    :icon="['fas' ,'calendar-alt']"
+                                    fixed-width
+                                />
+                                {{ dates_mobile }}
+                            </div>
                         </div>
 
-                        <div class="checkin_mobile">
-                            <font-awesome-icon
-                                class="pr-2"
-                                :icon="['fas' ,'calendar-alt']"
-                                fixed-width
-                            />
-                            {{ dates }}
+                        <div class="col-4 text-right">
+                            <button 
+                                class="btn btn-sm btn-primary modificar_button w-100"
+                                @click="() => { showModal(2, false); $root.$emit('showmodal', 2) }"
+                                type="button"
+                            >
+                                <font-awesome-icon
+                                    class="pr-2"
+                                    :icon="['fas' ,'search']"
+                                    fixed-width
+                                />Modificar
+                            </button>
                         </div>
-                    </div>
-
-                    <div>
-                        <button 
-                            class="btn btn-sm btn-primary modificar_button"
-                            @click="() => { showModal(2, false); $root.$emit('showmodal', 2) }"
-                            type="button"
-                        >
-                            <font-awesome-icon
-                                class="pr-2"
-                                :icon="['fas' ,'search']"
-                                fixed-width
-                            />Modificar
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- HEADER DESKTOP --> 
+        <!-- HEADER FORMS --> 
         <div 
             :class="{
                 'row' : true,
                 'busqueda' : true,
                 'd-none' : !disable_mobile,
                 'd-flex' : disable_mobile,
-                'd-lg-flex' : true
+                'appear' : !display_header,
+                'd-lg-flex' : !display_header
             }"
         >
             <div class="col-12 detalle_modal_container">
@@ -66,7 +92,7 @@
                         <div class="row py-2">
                             <div 
                                 :class="{
-                                    'col-6' : true,
+                                    'col-md-6 form_tabs' : true,
                                     'form-group' : tablet_size
                                 }"
                             >
@@ -115,6 +141,7 @@
                                         name="options"
                                         class="custom-control-input"
                                         :value="3"
+                                        :disabled="is_flex"
                                     >
                                     
                                     <label 
@@ -132,13 +159,13 @@
                                         id="todos_salida" 
                                         type="checkbox" 
                                         name="todos_salida" 
-                                        class="custom-control-input col-1"
+                                        class="custom-control-input "
                                         v-model="form.flex"
                                     >
                                 
                                     <label 
                                         for="todos_salida" 
-                                        class="custom-control-label col-11 boton fechas_flexibles"
+                                        class="custom-control-label  boton fechas_flexibles"
                                     >
                                         Fechas flexibles
                                     </label>
@@ -227,7 +254,7 @@
                                     <div
                                         :class="{
                                             'form-group' : tablet_size,
-                                            'col-8': form.type_search !== 3,
+                                            'col-md-8': form.type_search !== 3,
                                             'col-12': form.type_search === 3,
                                             'col-lg-7': form.type_search === 3,
                                             'col-xl-6': form.type_search === 3
@@ -301,7 +328,8 @@
                                             'col-sm-4': form.type_search !== 3,
                                             'col-12': form.type_search === 3,
                                             'col-lg-5': form.type_search === 3,
-                                            'col-xl-6': form.type_search === 3
+                                            'col-xl-6': form.type_search === 3,
+                                            'pl-xl-0': true
                                         }"
                                     >
                                         <input 
@@ -310,7 +338,7 @@
                                                 'btn': true,
                                                 'btn-primary': true,
                                                 'boton_busqueda': true,
-                                                'w-100': form.type_search === 3
+                                                'w-100': true
                                             }" 
                                             placeholder="Destino" 
                                             value="Buscar"
@@ -363,8 +391,10 @@
     library.add(faUser, faMinusCircle, faPlusCircle, faCalendarAlt, faSearch);
 
     import { between_mobile_header } from '@/views/routes/step2/mixins';
-
-    import { forQueryString, booleanToNumber } from '@/methods';
+    
+    import { forQueryString } from '@/methods';
+    
+    import { toLocaleString } from '@/mixins/methods';
 
     import { BDropdown } from 'bootstrap-vue';
     
@@ -379,9 +409,10 @@
         data(){
             return{
                 opciones_avanzadas: false,
+                display_header : true
             }
         },
-        mixins: [between_mobile_header],
+        mixins: [between_mobile_header, toLocaleString ],
         components: {
             Flight,
             PassengerPicker,
@@ -402,22 +433,61 @@
 
                 return total;
             },
-            originDestination(){
-                if(this.$store.state.Step2.search.flights[0].origin !== null){
-                    return this.$store.state.Step2.search.flights[0].origin.value  + ' - ' + this.$store.state.Step2.search.flights[0].destination.value 
+            origin_destination(){
+                if(this.router.flights[0].origin !== null){
+                    return `<b>${this.splitCity(this.router.flights[0].origin.label)} </b> a <b>${this.splitCity(this.router.flights[0].destination.label)}</b>`; 
+                    
                 }
 
                 return '';
             },
-            dates(){
-                if(  this.$store.state.Step2.search.flights[0].date instanceof Array ){
-                    return this.toFormatStringDate(this.$store.state.Step2.search.flights[0].date[0]) + ' - ' + this.toFormatStringDate(this.$store.state.Step2.search.flights[0].date[1]);
-                         
-                }else{
-                    return false; 
+            origin_destination_mobile(){
+                if(this.router.flights[0].origin !== null){
+                    return `${this.router.flights[0].origin.value} - ${this.router.flights[0].destination.value}`; 
                 }
-            }
 
+                return '';
+            },
+            date_idayvuelta(){
+                let ida;
+                let vuelta;
+
+                if(this.router.flights[0].date instanceof Array){
+                   
+                   if(this.router.flights[0].date[0]){
+                        ida = `saliendo el <b>${this.toLocaleString(this.router.flights[0].date[0], {weekday: 'short', first_capital_letter: true}) }
+                              ${this.toLocaleString(this.router.flights[0].date[0], {day: 'numeric', first_capital_letter: true}) } 
+                              de ${this.toLocaleString(this.router.flights[0].date[0], {month: 'long', first_capital_letter: true}) }</b>`;
+                   }
+                   
+                    if(this.router.flights[0].date[1]){
+                        vuelta = ` y volviendo el <b>${this.toLocaleString(this.router.flights[0].date[1], {weekday: 'short', first_capital_letter: true}) }
+                                ${this.toLocaleString(this.router.flights[0].date[1], {day: 'numeric', first_capital_letter: true}) } 
+                                de ${this.toLocaleString(this.router.flights[0].date[1], {month: 'long', first_capital_letter: true}) } </b>`;
+                    }else{
+                        vuelta = ''
+                    }
+                }
+                
+                return ida + vuelta;
+            },
+            is_flex(){
+                if( this.$store.state.Step2.search.flex === true){
+                    return true;
+                }
+                return false;
+            },
+            dates_mobile(){
+                if(this.router.flights[0].date instanceof Array){
+                    return `${this.toFormatStringDate(this.router.flights[0].date[0])} - ${this.toFormatStringDate(this.router.flights[0].date[1])}`;
+                }
+
+                if(this.router.flights[0].date !== ''){
+                    return this.toFormatStringDate(this.router.flights[0].date);
+                }
+
+                return '';
+            }
         },
         watch: {
             'form.type_search': function(){
@@ -456,7 +526,10 @@
                 if(valid){
                     const search = JSON.parse(JSON.stringify(Object.assign({}, this.$store.state.Step2.search, this.form)));
 
-                    this.$store.dispatch('Step2/SET_SEARCH', JSON.parse(JSON.stringify(search)));
+                    await this.$store.dispatch('Step2/SET_SEARCH', JSON.parse(JSON.stringify(search)));
+                    
+                    this.display_header = true;
+                    this.hideModal();
 
                     this.$router.push({
                         name: 'step2',
@@ -487,163 +560,59 @@
                 if((this.form.qty_flights - 1) >= 2){
                     this.form.qty_flights--;
                 }
+            },
+            changeHeader(){
+                this.display_header = false;
+            },
+            splitCity(data){
+                let myResult = data.split('(');
+                myResult = myResult[0];
+
+                if(myResult.includes('-')){
+                    myResult = myResult.split("-");
+                    return myResult[0];
+                }
+
+                return myResult;
             }
+        
         }
     }
 </script>
 
-<style stoped>
-    .tramo {
-        color: gray;
-        font-size: 1em;
-        text-transform: uppercase;
-    }
-
-    .add_tramo, .del_style{
-        margin: 5px 0;
-        font-size: 0.9em;
-    }
-
-    .add_tramo i, .add_tramo a{
-        color: #11b718;
-    }
-    .del_style i, .del_style a{
-        color: red;
-    }
-
-    .busqueda{
-        background: #fff;
-        border-radius: 2px;
-        border-bottom: 1.5px solid #9090ff;
-        box-shadow: -1px 5px 5px -5px rgba(0,0,0,0.75);
-        top: 0;
-        z-index: 11;
-   
-    }
-
-    .custom-control-input:checked~.custom-control-label::before{
-        color: #fff;
-        border-color: #9090ff;
-        background-color: #9090ff;
-    }
-
-    .fechas_flexibles{
-        color: #9090ff;
-        font-weight: 600;
-        letter-spacing: 0.8px;
-    }
-
-    .boton_busqueda{
-        border-radius: 10rem;
-        font-weight: 600;
-    }
-
-    .aplicar_boton{
-        margin: 10px 0;
-        border-radius: 12px;
-        background: transparent;
-        color: #9090ff;
-        font-weight: 500;
-        border: 1px solid;
-        float: right;
-        width: 40%;
-    }
-
-    .aplicar_boton:hover{
-        background: #9090ff;
-        color: #fff;
-        border: 1px solid #9090ff;  
-    }
-
-    #pasajeros_button{
-        border: 1px solid #9E9E9E;
-        background: #fff;
-        color: #4c4a4a;
-        width: 100%;
-        text-align: left;
-    }
-
-    .filtrar{
-        display: flex;
-        font-size: 1.2em;
-        font-weight: 600;
-        padding: 10px 0;
-        color: gray;
-    }
-
-    /* HEADER DE BUSQUEDA MOBILE */
-    .mobile_menu_buscador
-	{
-		background: #fff;
-		display: flex;
-		border-radius: 4px;
-		padding: 10px 0;
-		margin: 10px 0; 
-		-webkit-box-shadow: -1px 5px 5px -5px rgba(0,0,0,0.75);
-		-moz-box-shadow: -1px 5px 9px -5px rgba(0,0,0,0.75);
-		box-shadow: -1px 5px 5px -5px rgba(128, 81, 81, 0.75);
-	}
-	.mobile_fecha
-	{
-		display: flex;
-		flex-direction: column;
-        color: gray;
-	}
-	.mobile_fecha_container 
-	{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    /*     border-top: 1px solid #f1f1f1;
-        border-bottom: 1px solid #f1f1f1; */
-        flex-wrap: wrap;
-        /* margin: 10px 0;
-        padding: 10px 0; */
-	}
-    .recorrido_mobile
-	{
-        font-weight: 600;
-        color: #007bff;
-    }
-    .checkin_mobile{
-        font-size: 0.9em;
-    }
-     .modal_container .busqueda{
-        margin: 0;
-    }
-
-    .opciones_avanzadas{
-        border-top: 1px solid #efefef;
-    }
-
-    .opciones_avanzadas p{
-        display: flex;
-        margin: 10px 0;
-        align-items: center;
-        color:#007bff;
-        cursor: pointer;
-        justify-content: center;
-
-    }
+<style lang="scss" scoped>
     
-@media (max-width: 991px) {
+    @import './styles';
+    
+    @media (max-width: 991px) {
+        .header_fixed_desktop p{
+            font-size: 0.9em;
+        }   
+    
+        .form_tabs{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .busqueda{
+            border-bottom: none;
+            box-shadow: none;
+            padding: 0;
+        }
+        .detalle_modal_container{
+            padding: 0;
 
-    .modal_container header{
-        border-top: 1.4px solid #b7b7b7 ;
-
+        }
+        .custom-control-inline{
+            margin: 5px 0;
+        }
+        .sticky_header{
+            padding: 0;
+        }
     }
-    .busqueda{
-        border-bottom: none;
-        box-shadow: none;
-        padding: 0;
+    @media (max-width: 576px) {
+        .form_tabs div{
+            width: 100% ;
+        }
     }
-    .detalle_modal_container{
-        padding: 0;
-
-    }
-    .custom-control-inline{
-        margin: 5px 0;
-    }
-}
-
 </style>

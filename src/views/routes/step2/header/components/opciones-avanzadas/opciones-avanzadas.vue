@@ -1,55 +1,111 @@
 <template>
-    <div>
+    <div class="col-12">
         <form id="opciones_form">
-            <div class="row container_opciones">
-                <div class=" sinEscalas col-md-6 py-2">
-                    <!-- <button
-                        class="btn btn-primary btn-sm"
-                        id="sinEscalas"
-                    >
-                        Quiero un viaje sin escalas
-                    </button> -->
-                    <div class="custom-control custom-checkbox w-100">
-                        <input 
-                            id="sin_escalas"
-                            type="checkbox"
-                            name="sin_escalas"
-                            class="custom-control-input col-1"
-                            v-model="$store.state.Step2.search.without_stopovers"
+            <div class="container_opciones row">
+                <div class=" col-md-4 py-2">
+                    <div class=" row viajarEnClase">
+                        <label>
+                            Viajar en clase:
+                        </label>
+                        <select 
+                            name="clase"
+                            id="clase"
+                            class="form-control form-control-sm"
+                            v-model="$store.state.Step2.search.cabin"
                         >
-                        <label 
-                            for="sin_escalas"
-                            class="custom-control-label boton fecha_sinescala"
-                        >  Quiero un viaje sin escalas </label>
+                            <option value="Y">
+                                Económica
+                            </option>
+                            <option value="N">
+                                Económica Premium
+                            </option>
+                            <option value="C">
+                                Business
+                            </option>
+                            <option value="F">
+                                Primera
+                            </option>
+                        </select>
+                        <div class="custom-control custom-checkbox w-100">
+                            <input 
+                                id="sin_escalas"
+                                type="checkbox"
+                                name="sin_escalas"
+                                class="custom-control-input col-1"
+                                v-model="$store.state.Step2.search.without_stopovers"
+                            >
+                            <label 
+                                for="sin_escalas"
+                                class="custom-control-label boton fecha_sinescala"
+                            >  Sin escalas </label>
+                        </div>
                     </div>
                 </div>
-                <div class=" col-md-6 py-2">
-                    <div class="row viajarEnClase">
-                        <div class="col-sm-3">
-                            <span>
-                                Viajar en clase:
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <select 
-                                name="clase"
-                                id="clase"
-                                class="form-control form-control-sm"
-                                v-model="$store.state.Step2.search.cabin"
+                <div class=" col-md-4 py-2">
+                    <div class=" row viajarEnClase">
+                        <label>
+                            Aerolineas
+                        </label>
+                        <select 
+                            name=""
+                            id=""
+                            class="form-control form-control-sm"
+                        >
+                            <option value="Y">
+                                -
+                            </option>
+                        </select>
+                        <div class="custom-control custom-checkbox w-100">
+                            <input 
+                                id="sin_escalas"
+                                type="checkbox"
+                                name="sin_escalas"
+                                class="custom-control-input col-1"
+                                v-model="$store.state.Step2.search.without_stopovers"
                             >
-                                <option value="Y">
-                                    Económica
-                                </option>
-                                <option value="N">
-                                    Económica Premium
-                                </option>
-                                <option value="C">
-                                    Business
-                                </option>
-                                <option value="F">
-                                    Primera
-                                </option>
-                            </select>
+                            <label 
+                                for="sin_escalas"
+                                class="custom-control-label boton fecha_sinescala"
+                            >  Misma Aerolínea </label>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-4 py-2">
+                    <div class=" row viajarEnClase">
+                        <label>
+                            Alianza
+                        </label>
+                        <select 
+                            name=""
+                            id=""
+                            class="form-control form-control-sm"
+                            v-model="$store.state.Step2.search.alliance"
+                        >
+                            <option selected>
+                                Todas
+                            </option>
+                            <option value="A">
+                                Star Alliance
+                            </option>
+                            <option value="O">
+                                OneWorld
+                            </option>
+                            <option value="S">
+                                SkyTeam
+                            </option>
+                        </select>
+                        <div class="custom-control custom-checkbox w-100">
+                            <input 
+                                id="sin_escalas"
+                                type="checkbox"
+                                name="sin_escalas"
+                                class="custom-control-input col-1"
+                                v-model="$store.state.Step2.search.without_stopovers"
+                            >
+                            <label 
+                                for="sin_escalas"
+                                class="custom-control-label boton fecha_sinescala"
+                            >  Incluir equipaje en bodega </label>
                         </div>
                     </div>
                 </div>
@@ -67,6 +123,7 @@
 <style lang="scss" scoped>
     .fecha_sinescala{
         color: #9090ff;
+        font-size: 0.9em;
     }
     .container_opciones{
         padding: 0 10px;
@@ -84,11 +141,18 @@
     #opciones_form{
         border-top: 1px solid #efefef;
     }
+    label{
+        font-weight: 600;
+        color: #4c4a4a;
+    }
+    select{
+        margin-bottom: 10px;
+    }
 
     .viajarEnClase{
         display: flex;
-        justify-content: center;
         align-items: center;
+        padding: 10px;
         
     }
     @media(max-width: 560px){
@@ -96,7 +160,12 @@
             border: none;
         }
 
+        .sinEscalas{
+            text-align: left;
+
+        }
         .viajarEnClase{
+            justify-content: flex-start;
             padding: 10px 0;
         }
     }

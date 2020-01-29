@@ -274,13 +274,12 @@
                         if(this.typeSearch === 1){
                             if(this.model.date instanceof Array){
                                 if(this.model.date.length === 1){
-                                    console.log("model: ", this.model.date)
                                     this.$store.commit('Step2/CLEAR_BACKUP', { key: 'flight' });
                                 }
                             }
                         }
                     }
-                }, 0)
+                }, 0);
             },
             'before_flight.date': function(n_val, o_val){
                 if(n_val !== o_val){

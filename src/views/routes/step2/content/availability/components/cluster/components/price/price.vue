@@ -39,7 +39,7 @@
                 >
                     <div class="col-12">
                         <div class="detalles_precio_mobile ">
-                            <small>{{ `${item_passenger.nombre}` }}</small>
+                            <span class="passenger_name">{{ `${item_passenger.nombre}` }}</span>
                         </div>
                     </div>
                     <div class="col-12">
@@ -84,7 +84,6 @@
                     </div>
                 </div>
             </b-collapse>
-
             <div 
                 v-if="activeXs"
                 class="col-12 precio_total precio_mobile"
@@ -99,6 +98,7 @@
                     </div>
                 </div>
             </div>
+
 
             <slot name="select" />
         </div>

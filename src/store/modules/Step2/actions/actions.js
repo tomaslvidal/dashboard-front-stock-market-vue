@@ -4,7 +4,7 @@ import Vue from 'vue';
 
 import parseFormData from 'json-form-data';
 
-import { clearFilters } from '@/methods';
+import { clearFilters, booleanToString } from '@/methods';
 
 const ajax = {
     items: {},
@@ -13,12 +13,7 @@ const ajax = {
 
 export default {
     async SET_SEARCH(context, payload){
-        if(typeof payload.without_reset === "undefined"){
-            await context.dispatch('GENERAL_FORCE_RESET');
-        }
-        else{
-            delete payload.without_reset;
-        }
+        await context.dispatch('GENERAL_FORCE_RESET');
 
         context.commit('SET_SEARCH', payload);
 
@@ -98,13 +93,19 @@ export default {
         ajax.items = axios.CancelToken.source();
 
         axios({
-            url: 'https://aereos.eviajes.online/services/avail.php',
+            url: (item => {
+                if(item === 'production'){
+                    return 'https://aereos.eviajes.online/services/avail_test.php';
+                }
+
+                return 'https://aereos.eviajes.online/services/avail-t.php';
+            })(process.env.NODE_ENV),
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
             withCredentials: true,
-            data: parseFormData(context.state.search),
+            data: parseFormData(booleanToString(context.state.search)),
             cancelToken: ajax.items.token,
             onDownloadProgress: progressEvent => {
                 if(progressEvent.lengthComputable){

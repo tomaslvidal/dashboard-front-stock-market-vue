@@ -8,16 +8,21 @@ import { jsonParseAll, forQueryString, adaptGet } from '@/methods';
 
 Vue.use(Router);
 
-const toStep2OrSearcher = next => {
-    if(store.getters['Step2/rates'].length>0){
-        next({ name: 'step2', query: forQueryString(JSON.parse(JSON.stringify(store.state.Step2.search))) });
+const toStep2OrSearcher = (next, remake_search = false) => {
+    let check_set_search = false;
+
+    if(JSON.stringify(store.getters['Step2/search_default']) !== JSON.stringify(store.state.Step2.search)){
+        check_set_search = true;
     }
-    else{
-        parent.location.replace(store.getters['Step2/url_redirect_for_error']);
+
+    if((store.getters['Step2/rates'].length > 0 || remake_search) && check_set_search){
+        return next({ name: 'step2', query: forQueryString(JSON.parse(JSON.stringify(store.state.Step2.search))), params: { remake_search: remake_search  } });
     }
+
+    parent.location.replace(store.getters['Step2/url_redirect_for_error']);
 };
 
-let router = new Router({
+const router = new Router({
     mode: "history",
     base: "/motor/",
     routes: [
@@ -31,38 +36,38 @@ let router = new Router({
                 mobile: require('@/views/routes/step2').Mobile
             },
             beforeEnter: async (to, from, next) => {
-                if(!store.state.Step2.request_made.availability || (from.name !== "step3" && from.name !== "step5")){
+                if(!store.state.Step2.request_made.availability || to.params.remake_search || (from.name === null && typeof to.params.remake_search === 'undefined')){
                     if(Object.keys(to.query).length>0){
                         let $_GET = jsonParseAll(to.query), use_adapt = false;
 
                         if(typeof $_GET.airOrigen !== 'undefined'){
-                            $_GET = adaptGet($_GET);
+                            $_GET = await adaptGet($_GET);
 
                             use_adapt = true;
                         }
 
-                        store.dispatch('Step2/SET_SEARCH', $_GET);
+                        await store.dispatch('Step2/SET_SEARCH', $_GET);
 
                         next();
 
                         if(use_adapt){
-                            window.history.pushState(null, null, `${window.location.origin}/motor/?${new URLSearchParams(forQueryString(JSON.parse(JSON.stringify($_GET)))).toString()}`);
+                            next({
+                                name: 'step2',
+                                replace: true,
+                                query: forQueryString(JSON.parse(JSON.stringify($_GET)))
+                            });
                         }
-                    }
-                    else{
-                        parent.location.replace(store.getters['Availability/url_redirect_for_error']);
-                    }
-                }
-                else{
-                    if(Object.keys(to.query).length>0){
-                        store.dispatch('Step2/STEP3_TO_STEP5_FORCE_RESET');
 
-                        next();
+                        return;
                     }
                     else{
                         parent.location.replace(store.getters['Availability/url_redirect_for_error']);
                     }
                 }
+
+                store.dispatch('Step2/STEP3_TO_STEP5_FORCE_RESET');
+
+                return next();
             }
         },
         {
@@ -72,6 +77,13 @@ let router = new Router({
                 default: require('@/views/routes/step3').default,
                 header: require('@/views/components').Headers.One
             },
+            beforeEnter(to, from, next){
+                if(Object.keys(store.getters['Step3/rate']).length > 0 && !store.state.Step5.state.email_sent){
+                    return next();
+                }
+
+                toStep2OrSearcher(next, from.name === null && !store.state.Step2.request_made.availability);
+            }
         },
         {
             path: "/step5",
@@ -80,6 +92,13 @@ let router = new Router({
                 default: require('@/views/routes/step5').default,
                 header: require('@/views/components').Headers.One
             },
+            beforeEnter(to, from, next){
+                if(typeof store.state.Step3.data.book.codigo !== 'undefined'){
+                    return next();
+                }
+
+                toStep2OrSearcher(next, from.name === null && !store.state.Step2.request_made.availability);
+            }
         },
         {
             path: "*",

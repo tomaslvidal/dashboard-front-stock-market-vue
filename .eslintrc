@@ -1,7 +1,0 @@
-{
-    "extends": "standard",
-    "rules": {
-        "semi": 0,
-        "camelcase": 0
-    }
-}

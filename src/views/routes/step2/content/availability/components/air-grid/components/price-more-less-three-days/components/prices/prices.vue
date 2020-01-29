@@ -45,7 +45,7 @@
 
                         map[key] = object.map(item2 => ({
                             id_segment: item2.index, 
-                            ...item2.tramos[arrival_or_departure === 'salida' ? 0 : item2.tramos.length - 1][arrival_or_departure]
+                            ...item2.tramos[0]['salida']
                         }));
                     });
 

@@ -2,7 +2,7 @@ function toFormatArrivalDeparture(segmentos = []){
     let data = {};
 
     segmentos.forEach((item, index) => {
-        let type = item.tipo === 'ida' ? 'arrival' : 'departure';
+        let type = item.tipo === 'ida' || item.tipo === 'tramo' ? 'arrival' : 'departure';
 
         if(typeof data[type] === 'undefined'){
             data[type] = [];

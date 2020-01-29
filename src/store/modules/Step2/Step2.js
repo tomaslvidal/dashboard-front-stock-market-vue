@@ -34,7 +34,7 @@ const getDefaultState = () => ({
     ],
     search: {
         type_search: 1,
-        flex: false,
+        qty_flights: 1,
         passenger: {
             adults: 1,
             children: 0,
@@ -47,9 +47,13 @@ const getDefaultState = () => ({
                 date: ''
             }
         ],
-        without_stopovers: '',
-        cabin: '0',
-        qty_flights: 1
+        cabin: 'Y',
+        airline: 'all',
+        alliance: '',
+        flex: false,
+        hold_baggage: false,
+        without_stopovers: false,
+        same_air: false,
     },
     data: {
         rates: [],

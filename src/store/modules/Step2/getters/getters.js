@@ -95,7 +95,7 @@ export default {
             });
 
             // Filter Airline
-            rates = rates.filter(item => item.segmentos.filter(item => item.tipo === 'ida').map(item => item.tramos[0]).filter(item => {
+            rates = rates.filter(item => item.segmentos.filter(item => item.tipo === 'ida' || item.tipo === 'tramo').map(item => item.tramos[0]).filter(item => {
                 if(state.filter.airline.selected.length){
                     return state.filter.airline.selected.includes(item.aerolineaOperadora.codigo);
                 }
@@ -163,7 +163,7 @@ export default {
             if(state.sort.stopovers.selected){
                 rates = rates.sort((a, b) => {
                     let higher_stopover = function(item){
-                        return item.segmentos.filter(item => item.tipo === 'ida').map(item => item.tramos.length).sort((a, b) => {
+                        return item.segmentos.filter(item => item.tipo === 'ida' || item.tipo === 'tramo').map(item => item.tramos.length).sort((a, b) => {
                             if(a < b){
                                 return -1;
                             }
