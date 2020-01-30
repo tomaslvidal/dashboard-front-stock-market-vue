@@ -65,6 +65,7 @@
       "no-unused-components": "off",
       "vue/require-render-return": "off",
       "space-before-blocks": "off",
+      "vue/html-self-closing": "off",
       "vue/html-indent": [
         "error",
         4,
