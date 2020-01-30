@@ -10,14 +10,24 @@
             <router-view />
         </template>
 
-        <template v-else>
-            <aside>
-                <router-view name="aside" />
-            </aside>
+        <template 
+            class="root"
+            v-else
+        >
+            <div class="col-3 bg-dark aside">
+                <aside>
+                    <router-view name="aside" />
+                </aside>
+            </div>
 
-            <main>
-                <router-view name="content" />
-            </main>
+            <div class="col-9 bg-white py-3">
+                <main
+                    class="h-100"
+                    style="border: 1px solid #343a40"
+                >
+                    <router-view name="content" />
+                </main>
+            </div>
         </template>
     </skeleton>
 </template>

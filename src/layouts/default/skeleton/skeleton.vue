@@ -1,36 +1,13 @@
 <template>
-    <div class="d-flex flex-column root">
+    <div class="container root d-flex flex-grow-1 flex-column">
         <slot
             name="header"
         />
 
-        <div class="content">
-            <div
-                id="air-engine"
-                class="container-fluid"
-            >
-                <div class="row">
-                    <slot />
+        <div class="row root">
+            <slot />
 
-                    <scrollarrow />
-                </div>
-            </div>
-
-            <footer class="d-flex justify-content-center align-items-center my-2 container-fluid">
-                <span>Powered by </span>
-
-                <a
-                    href="http://www.aptek.com.ar"
-                    target="_blank"
-                >
-                    <img
-                        :src="require('@/assets/img/APTEK.jpg')"
-                        align="absmiddle"
-                        border="0"
-                        class="pl-1"
-                    >
-                </a>
-            </footer>
+            <scrollarrow />
         </div>
     </div>
 </template>
