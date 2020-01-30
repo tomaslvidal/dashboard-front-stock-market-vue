@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content
+    ="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+        div.aside *{
+            color: white;
+        }
+
+        div.aside .nav-link:hover{
+            color: gray;
+        }
+
+        div.aside .active{
+            color: #007bff;
+        }
+
+        html, body{
+            min-height: 100vh;
+        }
+        
+        div.root{
+            min-height: 80vh;
+        }
+
+        header.header{
+            min-height: 20vh;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <div class="container root d-flex flex-grow-1 flex-column">
+        <header class="header row bg-primary">
+            <div class="col-12">
+                <div class="d-flex h-100">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <span class="text-light">
+                            Simular de Bolsa Argentina
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="row root">
+            <div class="col-3 bg-dark aside">
+                <ul class="nav flex-column pt-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-9 bg-white py-3">
+                <div class="h-100" style="border: 1px solid #343a40">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
