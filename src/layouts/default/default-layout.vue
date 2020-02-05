@@ -20,10 +20,9 @@
                 </aside>
             </div>
 
-            <div class="col-9 bg-white py-3">
+            <div class="col-9 bg-white p-5">
                 <main
                     class="h-100"
-                    style="border: 1px solid #343a40"
                 >
                     <router-view name="content" />
                 </main>
