@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label for="dollar_prognosis">Dolar pronostico</label>
 
-                <input id="dollar_prognosis" class="form-control form-control-sm" type="text" name="dollar_prognosis">
+                <input id="dollar_prognosis" class="form-control form-control-sm" type="number" name="dollar_prognosis">
             </div>
 
             <div class="form-row">
