@@ -19,14 +19,14 @@
                 e.preventDefault();
                 
                 if($('.aside').css('display') == 'block'){
-                    $('.aside').fadeOut(400, function(){
-                        $('.content').addClass('col-md-12');
+                    $('.aside').fadeOut(200, function(){
+                        $('.content').css('flex', '1').css('min-width', '100%');
                     });
 
                     return;
                 }
 
-                $('.content').removeClass('col-md-12');
+                $('.content').removeAttr('style');
 
                 $('.aside').fadeIn();
             });
