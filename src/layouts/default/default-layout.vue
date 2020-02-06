@@ -13,16 +13,16 @@
             class="root"
             v-else
         >
-            <div class="col-2 bg-dark aside">
+            <div class="col-xl-2 col-lg-4 col-12  bg-dark aside">
                 <aside>
                     <router-view name="aside" />
                 </aside>
             </div>
 
-            <div class="col-10 bg-light content">
+            <div class="col-xl-10 col-lg-8 col-md-12 bg-light content">
                 <router-view name="header" />
 
-                <main class="bg-white p-3 mt-4 rounded">
+                <main class="bg-white p-3 my-4 mx-2 rounded">
                     <router-view name="content" />
                 </main>
             </div>
@@ -57,4 +57,7 @@
 </script>
 
 <style scoped>
+    main{
+        border: 1px solid #cecece;
+    }
 </style>
