@@ -19,7 +19,7 @@
                 </aside>
             </div>
 
-            <div class="col-10 bg-light">
+            <div class="col-10 bg-light content">
                 <router-view name="header" />
 
                 <main class="bg-white p-3 mt-4 rounded">
