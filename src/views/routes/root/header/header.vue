@@ -1,12 +1,10 @@
 <template>
     <header class="header row bg-primary">
         <div class="col-12">
-            <div class="d-flex h-100">
-                <div class="d-flex justify-content-start align-items-center">
-                    <span class="text-light">
-                        Test
-                    </span>
-                </div>
+            <div class="d-flex h-100 justify-content-start align-items-center">
+                <span class="text-light">
+                    <i class="fas fa-bars" style="cursor: pointer"></i>
+                </span>
             </div>
         </div>
     </header>

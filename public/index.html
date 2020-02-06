@@ -20,16 +20,12 @@
             color: #007bff;
         }
 
-        html, body{
-            min-height: 100vh;
-        }
-        
-        div.root{
-            min-height: 80vh;
+        .container-fluid{
+            min-width: 100%;
         }
 
-        header.header{
-            min-height: 20vh;
+        html, body, body > .container-fluid:first-child, .row.root{
+            min-height: 100vh
         }
     </style>
   </head>

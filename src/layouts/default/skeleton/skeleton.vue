@@ -1,9 +1,5 @@
 <template>
-    <div class="container root d-flex flex-grow-1 flex-column">
-        <slot
-            name="header"
-        />
-
+    <div class="container-fluid">
         <div class="row root">
             <slot />
 

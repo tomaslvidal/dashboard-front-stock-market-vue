@@ -3,7 +3,6 @@
         <template
             v-slot:header
         >
-            <router-view name="header" />
         </template>
         
         <template v-if="!assert_with_aside_content">
@@ -14,16 +13,16 @@
             class="root"
             v-else
         >
-            <div class="col-3 bg-dark aside">
+            <div class="col-2 bg-dark aside">
                 <aside>
                     <router-view name="aside" />
                 </aside>
             </div>
 
-            <div class="col-9 bg-white p-5">
-                <main
-                    class="h-100"
-                >
+            <div class="col-10 bg-light">
+                <router-view name="header" />
+
+                <main class="bg-white p-3 mt-4 rounded">
                     <router-view name="content" />
                 </main>
             </div>
