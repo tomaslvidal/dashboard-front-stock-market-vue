@@ -8,15 +8,32 @@ Vue.use(Router);
 
 const router = new Router({
     mode: "history",
-    base: "/motor/",
+    base: "/",
     routes: [
         {
             path: "/",
-            name: "root",
+            name: "config",
             components: {
-                header: require('@/views/routes/root').Header,
-                content: require('@/views/routes/root').Content,
-                aside: require('@/views/routes/root').Aside,
+                header: require('@/views/components').Header,
+                content: require('@/views/routes/config').default,
+                aside: require('@/views/components').Aside,
+            },
+            meta: {
+                title: 'Configuración',
+                icon: 'fas fa-tools',
+            }
+        },
+        {
+            path: "/buy",
+            name: "buy",
+            components: {
+                header: require('@/views/components').Header,
+                content: require('@/views/routes/buy').default,
+                aside: require('@/views/components').Aside,
+            },
+            meta: {
+                title: 'Comprar',
+                icon: 'fas fa-shopping-basket',
             }
         },
         {

@@ -23,7 +23,21 @@
                 <router-view name="header" />
 
                 <main class="bg-white p-3 my-4 mx-2 rounded">
-                    <router-view name="content" />
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>
+                                <i :class="`${$route.meta.icon} pr-2`" />
+                                
+                                {{ $route.meta.title }}
+                            </h4>
+
+                            <hr>
+
+                            <div class="row">
+                                <router-view name="content" />
+                            </div>
+                        </div>
+                    </div>
                 </main>
             </div>
         </template>

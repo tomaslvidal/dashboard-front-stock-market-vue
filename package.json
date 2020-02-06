@@ -68,17 +68,7 @@
       "space-before-blocks": "off",
       "vue/html-self-closing": "off",
       "vue/max-attributes-per-line": "off",
-      "vue/html-indent": [
-        "error",
-        4,
-        {
-          "attribute": 1,
-          "baseIndent": 1,
-          "closeBracket": 0,
-          "alignAttributesVertically": true,
-          "ignores": []
-        }
-      ],
+      "vue/html-indent": "off",
       "vue/prop-name-casing": "off"
     },
     "parserOptions": {

@@ -1,3 +1,5 @@
-import Headers from './headers';
+import Aside from './aside';
 
-export { Headers };
+import Header from './header';
+
+export { Aside, Header };

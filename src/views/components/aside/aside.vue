@@ -19,10 +19,24 @@
                 <a
                     class="nav-link active"
                     href="#"
+                    @click.stop.prevent="() => $router.push({ name: 'config' })"
                 >
-                    <i class="fas fa-tools menu pr-2"></i>
+                    <i class="fas fa-tools pr-2"></i>
 
                     Configuración
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a
+                    class="nav-link active"
+                    href="#"
+                    @click.stop.prevent="() => $router.push({ name: 'buy' })"
+
+                >
+                    <i class="fas fa-shopping-basket pr-2"></i>
+
+                    Comprar
                 </a>
             </li>
         </ul>
