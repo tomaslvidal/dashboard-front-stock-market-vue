@@ -15,7 +15,7 @@ const router = new Router({
             name: "config",
             components: {
                 header: require('@/views/components').Header,
-                content: require('@/views/routes/config').default,
+                content: require('@/views/routes').Config,
                 aside: require('@/views/components').Aside,
             },
             meta: {
@@ -28,12 +28,25 @@ const router = new Router({
             name: "buy",
             components: {
                 header: require('@/views/components').Header,
-                content: require('@/views/routes/buy').default,
+                content: require('@/views/routes').Buy,
                 aside: require('@/views/components').Aside,
             },
             meta: {
                 title: 'Comprar',
                 icon: 'fas fa-shopping-basket',
+            }
+        },
+        {
+            path: "/leverage",
+            name: "leverage",
+            components: {
+                header: require('@/views/components').Header,
+                content: require('@/views/routes').Leverage,
+                aside: require('@/views/components').Aside,
+            },
+            meta: {
+                title: 'Apalancamiento',
+                icon: 'fas fa-suitcase',
             }
         },
         {
