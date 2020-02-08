@@ -21,7 +21,7 @@
                     href="#"
                     @click.stop.prevent="() => $router.push({ name: 'config' })"
                 >
-                    <i class="fas fa-tools pr-2"></i>
+                    <i :class="`${getMeta('config').icon} pr-2`"></i>
 
                     Configuración
                 </a>
@@ -34,9 +34,21 @@
                     @click.stop.prevent="() => $router.push({ name: 'buy' })"
 
                 >
-                    <i class="fas fa-shopping-basket pr-2"></i>
+                    <i :class="`${getMeta('buy').icon} pr-2`"></i>
 
                     Comprar
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a
+                    class="nav-link active"
+                    href="#"
+                    @click.stop.prevent="() => $router.push({ name: 'leverage' })"
+
+                >
+                    <i :class="`${getMeta('leverage').icon} pr-2`"></i>
+                    Apalancamiento
                 </a>
             </li>
         </ul>
@@ -48,6 +60,15 @@
         methods: {
             home(){
                 window.location.href='/';
+            },
+            getMeta(name){
+                const item = this.$router.options.routes.filter(item => item.name === name);
+
+                if(item.length){
+                    return item[0].meta;
+                }
+
+                return {};
             }
         }
     }
