@@ -25,11 +25,11 @@
                 <main class="bg-white p-3 my-4 mx-2 rounded">
                     <div class="row">
                         <div class="col-12">
-                            <h4>
+                            <h5>
                                 <i :class="`${$route.meta.icon} pr-2`" />
                                 
                                 {{ $route.meta.title }}
-                            </h4>
+                            </h5>
 
                             <hr>
 
