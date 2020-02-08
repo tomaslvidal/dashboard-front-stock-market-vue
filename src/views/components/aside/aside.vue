@@ -19,7 +19,7 @@
                 <a
                     class="nav-link active"
                     href="#"
-                    @click.stop.prevent="() => $router.push({ name: 'config' })"
+                    @click.stop.prevent="routerPush('config')"
                 >
                     <i :class="`${getMeta('config').icon} pr-2`"></i>
 
@@ -31,7 +31,7 @@
                 <a
                     class="nav-link active"
                     href="#"
-                    @click.stop.prevent="() => $router.push({ name: 'buy' })"
+                    @click.stop.prevent="routerPush('buy')"
 
                 >
                     <i :class="`${getMeta('buy').icon} pr-2`"></i>
@@ -44,7 +44,7 @@
                 <a
                     class="nav-link active"
                     href="#"
-                    @click.stop.prevent="() => $router.push({ name: 'leverage' })"
+                    @click.stop.prevent="routerPush('leverage')"
 
                 >
                     <i :class="`${getMeta('leverage').icon} pr-2`"></i>
@@ -69,6 +69,14 @@
                 }
 
                 return {};
+            },
+            routerPush(name){
+                this.$router.push({ name })
+                .catch(e => {
+                    if(e.constructor.name !== 'NavigationDuplicated'){
+                        throw e;
+                    }
+                });
             }
         }
     }

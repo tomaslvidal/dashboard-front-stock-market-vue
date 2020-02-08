@@ -1,15 +1,17 @@
 <template>
     <div class="col-12">
-        <div class="form-group">
-            <label for="pesos_capital">Capital Pesos</label>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label for="pesos_capital">Capital Pesos</label>
 
-            <input class="form-control form-control-sm" type="number" name="pesos_capital" id="pesos_capital">
-        </div>
+                <input class="form-control form-control-sm" type="number" name="pesos_capital" id="pesos_capital">
+            </div>
 
-        <div class="form-group">
-            <label for="dollar_capital">Capital dolares</label>
+            <div class="form-group col-6">
+                <label for="dollar_capital">Capital dolares</label>
 
-            <input class="form-control form-control-sm" type="number" name="dollar_capital" id="dollar_capital">
+                <input class="form-control form-control-sm" type="number" name="dollar_capital" id="dollar_capital">
+            </div>
         </div>
 
         <div class="form-group">
@@ -39,13 +41,13 @@
                 <div class="form-group col-md-6">
                     <label for="raise_range_0">Desde</label>
 
-                    <input name="raise_range[]" type="number" class="form-control" id="raise_range_0">
+                    <input name="raise_range[]" type="number" class="form-control form-control-sm" id="raise_range_0">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="raise_range_1">Hasta</label>
 
-                    <input name="raise_range[]" type="number" class="form-control" id="raise_range_1">
+                    <input name="raise_range[]" type="number" class="form-control form-control-sm" id="raise_range_1">
                 </div>
             </div>
         </div>
