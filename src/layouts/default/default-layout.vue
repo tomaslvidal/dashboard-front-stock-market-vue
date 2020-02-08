@@ -58,10 +58,16 @@
         },
         computed:{
             assert_with_aside_content(){
-                let components = this.$router.options.routes.filter(item => item.path === this.$store.state.Router.path)[0].components;
+                if(typeof this.$store.state.Router !== 'undefined'){
+                    let router = this.$router.options.routes.filter(item => item.path === this.$store.state.Router.path);
 
-                if(typeof components.aside !== 'undefined' && typeof components.content !== 'undefined'){
-                    return true;
+                    if(router.length){
+                        router = router[0].components;
+
+                        if(typeof router.aside !== 'undefined' && typeof router.content !== 'undefined'){
+                            return true;
+                        }
+                    }
                 }
 
                 return false;

@@ -22,9 +22,7 @@ import '@/components/registration';
 
 // Vue.config.devtools = false;
 
-if(typeof store._modulesNamespaceMap['Router/'] !== 'undefined'){
-    sync(store, router, { moduleName: 'Router' });
-}
+sync(store, router, { moduleName: 'Router' });
 
 Vue.mixin(global_mixin); 
 
