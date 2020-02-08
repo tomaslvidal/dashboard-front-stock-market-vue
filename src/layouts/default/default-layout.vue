@@ -34,7 +34,7 @@
                             <hr>
 
                             <div class="row">
-                                <router-view name="content" />
+                                <router-view name="content" class="mt-1"/>
                             </div>
                         </div>
                     </div>

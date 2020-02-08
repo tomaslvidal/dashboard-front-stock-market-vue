@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 mt-1">
+    <div class="col-12">
         <table class="table">
         <thead>
             <tr>

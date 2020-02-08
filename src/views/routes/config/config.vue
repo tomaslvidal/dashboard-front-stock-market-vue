@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 mt-1">
+    <div class="col-12">
         <div class="form-group">
             <label for="pesos_capital">Capital Pesos</label>
 
