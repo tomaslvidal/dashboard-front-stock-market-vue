@@ -62,10 +62,14 @@
                     let router = this.$router.options.routes.filter(item => item.path === this.$store.state.Router.path);
 
                     if(router.length){
-                        router = router[0].components;
-
-                        if(typeof router.aside !== 'undefined' && typeof router.content !== 'undefined'){
-                            return true;
+                        router = router[0];
+                        
+                        if(typeof router.components !== 'undefined'){
+                            router = router.components;
+                            
+                            if(typeof router.aside !== 'undefined' && typeof router.content !== 'undefined'){
+                                return true;
+                            }
                         }
                     }
                 }
