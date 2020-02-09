@@ -51,7 +51,13 @@ const Root = {
             context.commit('FORCE_RESET', payload);
         },
         SET_FORM(context, payload){
-            context.dispatch('SET_FORM', payload);
+            this._vm.$bvToast.toast('La informacion se ha guardado con exito', {
+                title: 'Formulario guardado',
+                solid: true,
+                variant: 'success'
+            });
+            
+            context.commit('SET_FORM', payload);
         }
     }
 }
