@@ -16,40 +16,35 @@
 
         <ul class="nav flex-column my-2">
             <li class="nav-item">
-                <a
+                <router-link
                     class="nav-link active"
-                    href="#"
-                    @click.stop.prevent="routerPush('config')"
+                    :to="{ name: 'config'}"
                 >
                     <i :class="`${getMeta('config').icon} pr-2`"></i>
 
                     Configuración
-                </a>
+                </router-link>
             </li>
 
             <li class="nav-item">
-                <a
+                <router-link
                     class="nav-link active"
-                    href="#"
-                    @click.stop.prevent="routerPush('buy')"
-
+                    :to="{ name: 'buy'}"
                 >
                     <i :class="`${getMeta('buy').icon} pr-2`"></i>
 
                     Comprar
-                </a>
+                </router-link>
             </li>
 
             <li class="nav-item">
-                <a
+                <router-link
                     class="nav-link active"
-                    href="#"
-                    @click.stop.prevent="routerPush('leverage')"
-
+                    :to="{ name: 'leverage'}"
                 >
                     <i :class="`${getMeta('leverage').icon} pr-2`"></i>
                     Apalancamiento
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -69,14 +64,6 @@
                 }
 
                 return {};
-            },
-            routerPush(name){
-                this.$router.push({ name })
-                .catch(e => {
-                    if(e.constructor.name !== 'NavigationDuplicated'){
-                        throw e;
-                    }
-                });
             }
         }
     }
