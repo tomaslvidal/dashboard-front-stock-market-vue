@@ -49,7 +49,7 @@
         },
         methods:{
             onSubmit(){
-                this.$store.commit('Root/SET_FORM', {
+                this.$store.dispatch('Root/SET_FORM', {
                     'form': 'leverage',
                     'data': JSON.parse(JSON.stringify(this.form))
                 });
