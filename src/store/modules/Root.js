@@ -5,6 +5,9 @@ import parseFormData from 'json-form-data';
 import { totalDuration } from '@/methods';
 
 const getDefaultState = () => ({
+    buy: {
+        
+    },
     config: {
         pesos_capital: 0,
         dollar_capital: 0,

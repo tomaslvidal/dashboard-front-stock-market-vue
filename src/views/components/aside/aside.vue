@@ -7,7 +7,9 @@
 
                     <br>
 
-                    SISTEMA DE SIMULACIÓN
+                    <span>
+                        SISTEMA DE SIMULACIÓN
+                    </span>
 
                     <hr>
                 </span>
@@ -43,6 +45,7 @@
                     :to="{ name: 'leverage'}"
                 >
                     <i :class="`${getMeta('leverage').icon} pr-2`"></i>
+                    
                     Apalancamiento
                 </router-link>
             </li>
