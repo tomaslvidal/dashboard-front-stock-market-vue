@@ -70,7 +70,8 @@
       "vue/html-self-closing": "off",
       "vue/max-attributes-per-line": "off",
       "vue/html-indent": "off",
-      "vue/prop-name-casing": "off"
+      "vue/prop-name-casing": "off",
+      "vue/no-unused-components": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"
