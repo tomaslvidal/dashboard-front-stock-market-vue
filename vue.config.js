@@ -4,5 +4,6 @@ module.exports = {
       background_color: '#DC2828'
     },
     name: 'test'
-  }
+  },
+  runtimeCompiler: true
 }
