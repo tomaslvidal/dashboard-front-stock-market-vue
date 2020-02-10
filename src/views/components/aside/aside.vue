@@ -60,8 +60,14 @@
                 window.location.href='/';
             },
             getMeta(name){
-                const item = this.$router.options.routes.filter(item => item.name === name);
+                const getItem = (name, key = 'name') => this.$router.options.routes.filter(item => item[key] === name);
 
+                let item = getItem(name);
+
+                if(!item.length){
+                    item = getItem(`/${name}`, 'path');
+                }
+                
                 if(item.length){
                     return item[0].meta;
                 }
