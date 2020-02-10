@@ -25,16 +25,31 @@ const router = new Router({
         },
         {
             path: "/buy",
-            name: "buy",
+            pathToRegexpOptions: {
+                strict: false
+            },
             components: {
                 header: require('@/views/components').Header,
-                content: require('@/views/routes').Buy,
+                content: {
+                    template: '<router-view />'
+                },
                 aside: require('@/views/components').Aside,
             },
             meta: {
                 title: 'Comprar',
                 icon: 'fas fa-shopping-basket',
-            }
+            },
+            children: [
+                {
+                    path: '',
+                    name: 'buy',
+                    component: require('@/views/routes').Buy,
+                    meta: {
+                        title: 'Comprar',
+                        icon: 'fas fa-shopping-basket',
+                    },
+                }
+            ]
         },
         {
             path: "/leverage",
