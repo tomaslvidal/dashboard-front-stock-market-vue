@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="d-flex h-100 justify-content-start align-items-center">
                 <span class="text-light d-flex align-items">
-                    <i class="fas fa-bars menu" style="cursor: pointer; font-size: 20px"></i>
+                    <i class="fas fa-bars menu pl-1" style="cursor: pointer; font-size: 25px"></i>
                 </span>
             </div>
         </div>
