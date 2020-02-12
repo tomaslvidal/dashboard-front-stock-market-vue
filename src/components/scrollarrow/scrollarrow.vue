@@ -60,7 +60,7 @@
 
     .sticky_scrollable_arrow{
         font-size: 2.5em;
-        background: black;
+        background: #343a40;
         cursor: pointer;
         position: fixed;
         display: flex;
@@ -72,7 +72,7 @@
         transition: all 600ms ease-in-out;
         width: 50px;
         height: 50px;
-        box-shadow:0px 3px 15px -1px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 6px 0px rgb(0, 123, 255);
         border-radius: 30px;
     }
 

@@ -4,6 +4,8 @@ import Vue from "vue";
 
 import Router from "vue-router";
 
+import $ from 'jquery';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -48,6 +50,15 @@ const router = new Router({
                         title: 'Comprar',
                         icon: 'fas fa-shopping-basket',
                     },
+                },
+                {
+                    path: ':id',
+                    name: 'buy_id',
+                    component: require('@/views/routes').Buy,
+                    meta: {
+                        title: 'Editar',
+                        icon: 'fas fa-shopping-basket',
+                    },
                 }
             ]
         },
@@ -74,7 +85,12 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    window.scrollTo(0, 0);
+    if($(document).width() < 768){
+        window.scrollTo(0, 225);
+    }
+    else{
+        window.scrollTo(0, 0);
+    }
     
     next();
 });
