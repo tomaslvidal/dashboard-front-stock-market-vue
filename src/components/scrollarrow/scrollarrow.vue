@@ -57,6 +57,7 @@
             display: none;
         }
     }
+
     .sticky_scrollable_arrow{
         font-size: 2.5em;
         background: black;
@@ -73,31 +74,30 @@
         height: 50px;
         box-shadow:0px 3px 15px -1px rgba(0, 0, 0, 0.75);
         border-radius: 30px;
-        
     }
+
     .arrow_icon{
         color: #efefef;
         display: block;
         font-size: 0.5em;
     }
+    
     .sticky_scrollable_arrow:hover{
         color: gray;
     }
+
     .hide_arrow{
         animation: hide_arrow 1s forwards;
-        
     }
+
     .show_arrow{
         animation: show_arrow 1s ease-in-out;
-        display: flex;
-       
+        display: flex;   
     }
 
-
-    @media (max-width: 576px){
-        .sticky_scrollable_arrow{
-            display: none;
-        }
-
-    }
+    // @media (max-width: 576px){
+    //     .sticky_scrollable_arrow{
+    //         display: none;
+    //     }
+    // }
 </style>
