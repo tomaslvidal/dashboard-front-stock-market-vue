@@ -17,18 +17,22 @@
         mounted(){
             $('.menu').on('click', function(e){
                 e.preventDefault();
-                
+
                 if($('.aside').css('display') == 'block'){
                     $('.aside').fadeOut(200, function(){
+                        $('.aside').removeClass('d-md-block');
+
                         $('.content').css('flex', '1').css('min-width', '100%');
                     });
 
                     return;
                 }
 
-                $('.content').removeAttr('style');
-
-                $('.aside').fadeIn();
+                $('.aside').fadeIn(200, function(){
+                    $('.content').removeAttr('style');
+                    
+                    $('.aside').addClass('d-md-block');
+                });
             });
         }
     }
