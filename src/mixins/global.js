@@ -22,9 +22,9 @@ export default {
         
     },
     computed:{
-        router(){
-            return jsonParseAll(httpQueryToJson(JSON.parse(JSON.stringify(this.$store.state.Router.fullPath.slice(2)))));
-        },
+        // router(){
+        //     return jsonParseAll(httpQueryToJson(JSON.parse(JSON.stringify(this.$store.state.Router.fullPath.slice(2)))));
+        // },
         mobile_size(){
             if(this.current_width < 576){
                 return true;
