@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <ul class="nav flex-column my-2">
+        <ul class="nav flex-column my-3">
             <li class="nav-item">
                 <router-link
                     class="nav-link active"
