@@ -84,15 +84,10 @@ const router = new Router({
     ]
 });
 
-router.beforeEach((to, from, next) => {
-    if($(document).width() < 768){
-        window.scrollTo(0, 225);
-    }
-    else{
+router.afterEach((to, from) => {
+    setTimeout(() => {
         window.scrollTo(0, 0);
-    }
-    
-    next();
+    }, 0);
 });
 
 export default router;
