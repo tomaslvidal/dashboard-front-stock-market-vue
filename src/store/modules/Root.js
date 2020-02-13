@@ -8,6 +8,11 @@ const getDefaultState = () => ({
     buy: {
         
     },
+    aside: {
+        state: {
+            open: false
+        }
+    },
     config: {
         pesos_capital: 0,
         dollar_capital: 0,
@@ -47,6 +52,12 @@ const Root = {
         },
         SET_FORM(state, payload){
             Object.assign(state[payload.form], payload.data);
+        },
+        STATE_ASIDE(state, payload){
+            state.aside.state = {
+                ...state.aside.state,
+                ...payload
+            };
         }
     },
     actions:{
@@ -61,6 +72,9 @@ const Root = {
             });
             
             context.commit('SET_FORM', payload);
+        },
+        STATE_ASIDE(context, payload){
+            context.commit('STATE_ASIDE', payload);
         }
     }
 }
