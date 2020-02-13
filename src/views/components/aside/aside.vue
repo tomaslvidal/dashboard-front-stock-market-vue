@@ -16,8 +16,10 @@
             </div>
         </div>
 
+        <HeaderOne v-if="current_width < 768" />
+
         <ul class="nav flex-column my-3">
-            <li class="nav-item">
+            <li class="nav-item" @click="open('link')">
                 <router-link
                     class="nav-link active"
                     :to="{ name: 'config'}"
@@ -28,7 +30,7 @@
                 </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" @click="open('link')">
                 <router-link
                     class="nav-link active"
                     :to="{ name: 'buy'}"
@@ -39,7 +41,7 @@
                 </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" @click="open('link')">
                 <router-link
                     class="nav-link active"
                     :to="{ name: 'leverage'}"
@@ -54,7 +56,57 @@
 </template>
 
 <script>
+    import HeaderOne from '@/views/components/header';
+
+    import { Mixin } from '@/views/components/mixins';
+
+    import $ from 'jquery';
+
     export default {
+        name: 'Aside',
+        mixins: [Mixin],
+        components: {
+            HeaderOne
+        },
+        computed: {
+            state(){
+                return this.$store.state.Root.aside.state;
+            }
+        },
+        watch: {
+            'current_width': function(val){                
+                if(val >= 768){
+                    if(this.$store.state.Root.aside.state.open){
+                        this.$store.dispatch('Root/STATE_ASIDE', {
+                            open: false
+                        });
+                    }
+                }
+                else if(val < 768){
+                    if($('.aside').css('display') === 'none'){
+                        console.log(1);
+                        
+                        if(!$('.content').length){
+                        console.log(2);
+
+                            $('.aside').removeClass('d-none');
+                            
+                            $('.aside').fadeIn(200);
+                        }
+                    }
+
+                    if(!this.$store.state.Root.aside.state.open){
+                        console.log(3);
+
+                        if($('.aside').css('display') === 'block'){
+                            this.$store.dispatch('Root/STATE_ASIDE', {
+                                open: true
+                            });
+                        }
+                    }
+                }
+            }
+        },
         methods: {
             home(){
                 window.location.href='/';
