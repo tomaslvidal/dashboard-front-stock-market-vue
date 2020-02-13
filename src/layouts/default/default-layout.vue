@@ -92,5 +92,7 @@
 <style scoped>
     main{
         border: 1px solid #cecece;
+        max-height: 85vh;
+        overflow-y: scroll;
     }
 </style>
