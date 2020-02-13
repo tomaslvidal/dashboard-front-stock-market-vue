@@ -30,22 +30,22 @@ export default {
                 return;
             }
 
-            $('.aside').fadeIn(200, () => {
-                if($(document).width() < 768){
-                    $('.aside').removeClass('d-none');
+            if($(document).width() < 768){
+                $('.aside').removeClass('d-none');
+            
+                this.$store.dispatch('Root/STATE_ASIDE', {
+                    mobile: {
+                        open: true
+                    }
+                });
+            }
+            else{
+                $('.content').removeAttr('style');
                 
-                    this.$store.dispatch('Root/STATE_ASIDE', {
-                        mobile: {
-                            open: true
-                        }
-                    });
-                }
-                else{
-                    $('.content').removeAttr('style');
-                    
-                    $('.aside').addClass('d-md-block');
-                }
-            });
+                $('.aside').addClass('d-md-block');
+            }
+            
+            $('.aside').fadeIn(200);
         }
     }
 };
