@@ -10,7 +10,9 @@
         </template>
 
         <template 
-            class="root"
+            :class="{
+                root: current_width < 768
+            }"
             v-else
         >
             <div class="col-md-3 d-none d-md-block bg-dark aside">
@@ -19,7 +21,7 @@
                 </aside>
             </div>
 
-            <div class="col-md-9 col-12 bg-light content">
+            <div class="col-md-9 col-12 bg-light content" v-if="!$store.state.Root.aside.state.open">
                 <router-view name="header" />
 
                 <main class="bg-white p-3 my-4 mx-2 rounded">
@@ -50,6 +52,11 @@
     export default {
         components: {
             Skeleton
+        },
+        beforeMount(){
+            this.$store.dispatch('Root/STATE_ASIDE', {
+                open: false
+            });
         },
         computed:{
             assert_with_aside_content(){
