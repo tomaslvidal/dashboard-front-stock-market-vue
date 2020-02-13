@@ -22,7 +22,16 @@
                     <th>
                         <div class="row changes">
                             <div class="px-2">
-                                <i class="fas fa-edit" style="color: #007bff"></i>
+                                <router-link
+                                    :to="{
+                                        name: 'buy_id',
+                                        params: {
+                                            id: 2
+                                        }
+                                    }"
+                                >
+                                    <i class="fas fa-edit" style="color: #007bff"></i>
+                                </router-link>
                             </div>
 
                             <div class="px-2">
