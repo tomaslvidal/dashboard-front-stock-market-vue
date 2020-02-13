@@ -24,6 +24,8 @@
             <div class="col-md-9 col-12 bg-light content" v-if="!$store.state.Root.aside.state.mobile.open">
                 <router-view name="header" />
 
+                <div class="position-header" style="height: 50px"></div>
+
                 <main class="bg-white p-3 my-4 mx-2 rounded">
                     <div class="row">
                         <div class="col-12">
@@ -92,7 +94,21 @@
 <style scoped>
     main{
         border: 1px solid #cecece;
-        max-height: 85vh;
-        overflow-y: scroll;
+    }
+
+    .position-header{
+        display: none;
+    }
+
+    @media (max-width: 768px){
+        header{
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .position-header{
+            display: block;
+        }
     }
 </style>
