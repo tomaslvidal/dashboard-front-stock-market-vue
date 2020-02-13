@@ -21,7 +21,7 @@
                 </aside>
             </div>
 
-            <div class="col-md-9 col-12 bg-light content" v-if="!$store.state.Root.aside.state.open">
+            <div class="col-md-9 col-12 bg-light content" v-if="!$store.state.Root.aside.state.mobile.open">
                 <router-view name="header" />
 
                 <main class="bg-white p-3 my-4 mx-2 rounded">
@@ -55,7 +55,9 @@
         },
         beforeMount(){
             this.$store.dispatch('Root/STATE_ASIDE', {
-                open: false
+                mobile: {
+                    open: false
+                }
             });
         },
         computed:{

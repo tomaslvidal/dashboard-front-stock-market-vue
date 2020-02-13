@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import parseFormData from 'json-form-data';
 
-import { totalDuration } from '@/methods';
+import { totalDuration, mergeBIntoA } from '@/methods';
 
 const getDefaultState = () => ({
     buy: {
@@ -10,7 +10,9 @@ const getDefaultState = () => ({
     },
     aside: {
         state: {
-            open: false
+            mobile: {
+                open: false
+            }
         }
     },
     config: {
@@ -54,10 +56,7 @@ const Root = {
             Object.assign(state[payload.form], payload.data);
         },
         STATE_ASIDE(state, payload){
-            state.aside.state = {
-                ...state.aside.state,
-                ...payload
-            };
+            state.aside.state = Object.assign({}, mergeBIntoA(state.aside.state, payload));
         }
     },
     actions:{

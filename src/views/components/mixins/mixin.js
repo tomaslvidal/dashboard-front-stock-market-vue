@@ -1,10 +1,6 @@
 import $ from 'jquery';
 
 export default {
-    created(){
-        console.log($);
-        
-    },
     methods: {
         open(val){
             if(val === 'link'){
@@ -19,7 +15,9 @@ export default {
                         $('.aside').addClass('d-none d-md-block');
                     
                         this.$store.dispatch('Root/STATE_ASIDE', {
-                            open: false
+                            mobile: {
+                                open: false
+                            }
                         });
                     }
                     else{
@@ -37,7 +35,9 @@ export default {
                     $('.aside').removeClass('d-none');
                 
                     this.$store.dispatch('Root/STATE_ASIDE', {
-                        open: true
+                        mobile: {
+                            open: true
+                        }
                     });
                 }
                 else{

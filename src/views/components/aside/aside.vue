@@ -76,31 +76,29 @@
         watch: {
             'current_width': function(val){                
                 if(val >= 768){
-                    if(this.$store.state.Root.aside.state.open){
+                    if(this.$store.state.Root.aside.state.mobile.open){
                         this.$store.dispatch('Root/STATE_ASIDE', {
-                            open: false
+                            mobile: {
+                                open: false
+                            }
                         });
                     }
                 }
                 else if(val < 768){
                     if($('.aside').css('display') === 'none'){
-                        console.log(1);
-                        
                         if(!$('.content').length){
-                        console.log(2);
-
                             $('.aside').removeClass('d-none');
                             
                             $('.aside').fadeIn(200);
                         }
                     }
 
-                    if(!this.$store.state.Root.aside.state.open){
-                        console.log(3);
-
+                    if(!this.$store.state.Root.aside.state.mobile.open){
                         if($('.aside').css('display') === 'block'){
                             this.$store.dispatch('Root/STATE_ASIDE', {
-                                open: true
+                                mobile: {
+                                    open: true
+                                }
                             });
                         }
                     }
