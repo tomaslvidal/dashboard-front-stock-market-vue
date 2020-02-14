@@ -40,7 +40,7 @@ export default {
             return false;
         },
         scroll_arrow(){
-            if(this.current_scroll > 300){
+            if(this.current_scroll > 150){
                 return true;
             }
 
