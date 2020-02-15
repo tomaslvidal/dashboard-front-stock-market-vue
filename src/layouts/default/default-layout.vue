@@ -29,11 +29,27 @@
                 <main class="bg-white p-3 my-4 mx-2 rounded">
                     <div class="row">
                         <div class="col-12">
-                            <h5>
-                                <i :class="`${$route.meta.icon} pr-2`" />
-                                
-                                {{ title }}
-                            </h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <i :class="`${$route.meta.icon} pr-2`" />
+                                        
+                                        {{ title }}
+                                    </h5>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-end">
+                                        <a @click.stop.prevent="() => $router.go(-1)" href="#">
+                                            <i class="far fa-arrow-alt-circle-left"></i>
+                                            
+                                            <span>
+                                                Volver
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
                             <hr>
 
