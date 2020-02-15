@@ -54,10 +54,10 @@ const router = new Router({
                 {
                     path: ':id',
                     name: 'buy_id',
-                    component: require('@/views/routes').Buy,
+                    component: require('@/views/routes/buy').Components.Edit,
                     meta: {
-                        title: 'Editar',
-                        icon: 'fas fa-shopping-basket',
+                        title: 'Editar compra - ',
+                        icon: 'far fa-edit',
                     },
                 }
             ]
