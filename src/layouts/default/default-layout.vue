@@ -32,7 +32,7 @@
                             <h5>
                                 <i :class="`${$route.meta.icon} pr-2`" />
                                 
-                                {{ $route.meta.title }}
+                                {{ title }}
                             </h5>
 
                             <hr>
@@ -63,6 +63,15 @@
             });
         },
         computed:{
+            title(){
+                let val = this.$route.meta.title;
+
+                if(typeof this.$route.params.id !== 'undefined'){
+                    val += this.$route.params.id;
+                }
+
+                return val;
+            },
             assert_with_aside_content(){
                 let routes = this.$router.options.routes;
 
