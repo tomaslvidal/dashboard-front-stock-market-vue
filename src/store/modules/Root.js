@@ -10,20 +10,23 @@ const getDefaultState = () => ({
             id: 0,
             instrument: 'dollar',
             type: 'percentage',
-            value: 0
+            value: 0,
+            execution: 'monthly'
         },
         {
             id: 1,
             instrument: 'dollar',
             type: 'fixed',
             value: 0,
-            date: '2020-01-12'
+            date: '2020-01-12',
+            execution: 'date'
         },
         {
             id: 2,
             instrument: 'peso',
             type: 'percentage',
-            value: 0
+            value: 0,
+            execution: 'monthly'
         }
     ],
     aside: {

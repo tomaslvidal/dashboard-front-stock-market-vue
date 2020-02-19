@@ -51,7 +51,7 @@
 
                     <td>{{ item_buy.value }}</td>
 
-                    <td>{{ item_buy.date }}</td>
+                    <td>{{ item_buy.execution === 'date' ? item_buy.date : 'Mensual' }}</td>
                 </tr>
             </tbody>
         </table>

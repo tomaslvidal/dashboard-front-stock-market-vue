@@ -34,6 +34,24 @@
             </div>
 
             <div class="form-group">
+                <label for="execution">Ejecucion</label>
+
+                <select v-model="form.execution" class="form-control" id="execution">
+                    <option value="">Seleccionar</option>
+
+                    <option value="monthly">Mensual</option>
+
+                    <option value="date">Fecha</option>
+                </select>
+            </div>
+
+            <div v-if="form.execution === 'date'" class="form-group">
+                <label for="date">Fecha</label>
+
+                <input v-model="form.date" type="date" name="date" class="form-control form-control-sm" id="date">
+            </div>
+
+            <div class="form-group">
                 <label for="amount">Monto</label>
 
                 <input v-model="form.value" class="form-control form-control-sm" type="text" name="amount" id="amount">
@@ -54,7 +72,7 @@
     export default {
         computed: {
             form(){
-                return Object.assign({}, this.$store.state.Root.buy[this.$route.params.id]);
+                return this.$store.state.Root.buy[this.$route.params.id];
             }
         },
         methods:{
