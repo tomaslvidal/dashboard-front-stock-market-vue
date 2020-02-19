@@ -5,9 +5,27 @@ import parseFormData from 'json-form-data';
 import { totalDuration, mergeBIntoA } from '@/methods';
 
 const getDefaultState = () => ({
-    buy: {
-        
-    },
+    buy: [
+        {
+            id: 0,
+            instrument: 'dollar',
+            type: 'percentage',
+            value: 0
+        },
+        {
+            id: 1,
+            instrument: 'dollar',
+            type: 'fixed',
+            value: 0,
+            date: '2020-01-12'
+        },
+        {
+            id: 2,
+            instrument: 'peso',
+            type: 'percentage',
+            value: 0
+        }
+    ],
     aside: {
         state: {
             mobile: {
@@ -53,7 +71,12 @@ const Root = {
             Object.assign(state, getDefaultState());
         },
         SET_FORM(state, payload){
-            Object.assign(state[payload.form], payload.data);
+            if(typeof payload.id === 'undefined'){
+                Object.assign(state[payload.form], payload.data);
+            }
+            else{
+                Object.assign(state[payload.form][payload.id], payload.data);
+            }
         },
         STATE_ASIDE(state, payload){
             state.aside.state = Object.assign({}, mergeBIntoA(state.aside.state, payload));

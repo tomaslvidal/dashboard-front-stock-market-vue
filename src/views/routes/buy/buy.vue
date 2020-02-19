@@ -7,17 +7,22 @@
 
                     <th scope="col" />
 
-                    <th scope="col">First</th>
+                    <th scope="col">Instrumento</th>
 
-                    <th scope="col">Last</th>
+                    <th scope="col">Tipo (Fijo/Porcentaje)</th>
 
-                    <th scope="col">Handle</th>
+                    <th scope="col">Valor</th>
+
+                    <th scope="col">Fecha de ejecucion</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
+                <tr
+                    v-for="(item_buy, key) in items"
+                    :key="key"
+                >
+                    <th scope="row">{{ key }}</th>
 
                     <th>
                         <div class="row changes">
@@ -26,7 +31,7 @@
                                     :to="{
                                         name: 'buy_id',
                                         params: {
-                                            id: 2
+                                            id: key
                                         }
                                     }"
                                 >
@@ -40,11 +45,13 @@
                         </div>
                     </th>
 
-                    <td>Mark</td>
+                    <td>{{ item_buy.instrument }}</td>
 
-                    <td>Otto</td>
+                    <td>{{ item_buy.type }}</td>
 
-                    <td>@mdo</td>
+                    <td>{{ item_buy.value }}</td>
+
+                    <td>{{ item_buy.date }}</td>
                 </tr>
             </tbody>
         </table>
@@ -53,6 +60,11 @@
 
 <script>
     export default {
+        computed: {
+            items(){
+                return this.$store.state.Root.buy;
+            }
+        }
     }
 </script>
 
