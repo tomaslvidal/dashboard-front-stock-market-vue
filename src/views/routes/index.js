@@ -6,6 +6,8 @@ import Config from './config';
 
 import Leverage from './leverage';
 
-export { Buy, Config, Leverage };
+import Bonds from './bonds';
+
+export { Buy, Config, Leverage, Bonds };
 
 export default Routes;

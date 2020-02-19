@@ -63,6 +63,43 @@ const router = new Router({
             ]
         },
         {
+            path: "/bonds",
+            pathToRegexpOptions: {
+                strict: false
+            },
+            components: {
+                header: require('@/views/components').Header,
+                content: {
+                    template: '<router-view />'
+                },
+                aside: require('@/views/components').Aside,
+            },
+            meta: {
+                title: 'Comprar',
+                icon: 'fas fa-shopping-basket',
+            },
+            children: [
+                {
+                    path: '',
+                    name: 'bonds',
+                    component: require('@/views/routes').Bonds,
+                    meta: {
+                        title: 'Bonos',
+                        icon: 'fas fa-shopping-basket',
+                    },
+                },
+                {
+                    path: ':id',
+                    name: 'bond_id',
+                    component: require('@/views/routes/bonds').Components.Edit,
+                    meta: {
+                        title: 'Editar bono - ',
+                        icon: 'far fa-edit',
+                    },
+                }
+            ]
+        },
+        {
             path: "/leverage",
             name: "leverage",
             components: {

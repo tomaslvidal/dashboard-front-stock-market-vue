@@ -51,6 +51,17 @@
                     Apalancamiento
                 </router-link>
             </li>
+
+            <li class="nav-item" @click="open('link')">
+                <router-link
+                    class="nav-link active"
+                    :to="{ name: 'bonds'}"
+                >
+                    <i :class="`${getMeta('bonds').icon} pr-2`"></i>
+                    
+                    Bonos
+                </router-link>
+            </li>
         </ul>
     </div>
 </template>

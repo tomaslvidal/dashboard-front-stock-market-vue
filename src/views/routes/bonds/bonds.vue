@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 table-responsive">
+    <div class="col-12">
         <table class="table">
             <thead>
                 <tr>
@@ -25,7 +25,7 @@
                     <th scope="row">{{ key }}</th>
 
                     <th>
-                        <div class="d-flex changes">
+                        <div class="row changes">
                             <div class="px-2">
                                 <router-link
                                     :to="{
